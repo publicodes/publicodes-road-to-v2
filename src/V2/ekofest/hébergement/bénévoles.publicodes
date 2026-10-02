@@ -6,23 +6,27 @@
 
 hébergement . bénévoles:
   titre: Hébergement des bénévoles
-  formule:
+  unité: kgCO2e
+  valeur:
     variations:
       - si: type = "camping"
-        alors: nombre de nuits hôtel * nosgestesclimat . logement . vacances . empreinte hotel par nuit
+        alors: nombre de nuits hôtel * nosgestesclimat . logement . vacances . empreinte
+          hotel par nuit
       - si: type = "hôtel"
-        alors: nombre de nuits hôtel * nosgestesclimat . logement . vacances . empreinte hotel par nuit
+        alors: nombre de nuits hôtel * nosgestesclimat . logement . vacances . empreinte
+          hotel par nuit
       - sinon: 0
-  unité: kgCO2e
 
 hébergement . bénévoles . type:
   titre: Hébergement des bénévoles
-  question: Prenez-vous en charge l'hébergement en hôtel des organisateurs et bénévoles du festival ?
   une possibilité:
     - camping
     - hôtel
     - aucun
-  par défaut: "'aucun'"
+  par défaut: "aucun"
+  meta:
+    question: Prenez-vous en charge l'hébergement en hôtel des organisateurs et
+      bénévoles du festival ?
 
 hébergement . bénévoles . type . camping:
   titre: Oui, en camping
@@ -32,5 +36,5 @@ hébergement . bénévoles . type . aucun:
   titre: Non
 
 hébergement . bénévoles . nombre de nuits hôtel:
-  formule: informations . nombre de bénévoles * informations . nombre de nuits
   unité: nuit
+  valeur: informations . nombre de bénévoles * informations . nombre de nuits

@@ -1,7 +1,6 @@
 énergie . groupes électrogènes:
   titre: Groupes électrogènes
   applicable si: groupes électrogènes présent
-  formule: nombre * empreinte par jour * informations . nombre de jours
   unité: kgCO2e
   note: |
     On fait l'hypothèse que la puissance d'un groupe électrogène utilisé est de 10kW.
@@ -9,37 +8,41 @@
 
     Dans un second temps, il s'agira de d'évaluer l'empreinte du groupe électrogène directement 
     via le type de carburant consommé et la consommation réelle.
+  valeur: nombre * empreinte par jour * informations . nombre de jours
 
 énergie . groupes électrogènes présent:
   titre: Utilisation de groupes électrogènes
-  question: Allez-vous utiliser des groupes électrogènes pour l'événement ?
   par défaut: oui
+  meta:
+    question: Allez-vous utiliser des groupes électrogènes pour l'événement ?
 
 énergie . groupes électrogènes . nombre:
   titre: Nombre de groupes électrogènes
-  question: Combien de groupes électrogènes prévoyez-vous d'utiliser ?
   plancher: 0
   par défaut:
     variations:
       - si: autre présent
         alors: consommation par défaut / 4 / production
       - sinon: consommation par défaut / 2 / production
+  meta:
+    question: Combien de groupes électrogènes prévoyez-vous d'utiliser ?
 
 énergie . groupes électrogènes . production:
-  formule: 10kW * 24 h/jour * 0.75 * informations . nombre de jours
   unité: kWh
+  valeur: 10kW * 24 h/jour * 0.75 * informations . nombre de jours
 
 énergie . groupes électrogènes . empreinte par jour:
-  formule: 0.75 * consommation carburant * empreinte carburant * 24 h/jour
-  note: On considère qu'un groupe électrogène est utilisé 75% de la journée à pleine puissance.
+  note: On considère qu'un groupe électrogène est utilisé 75% de la journée à
+    pleine puissance.
   unité: kgCO2e/jour
+  valeur: 0.75 * consommation carburant * empreinte carburant * 24 h/jour
 
 énergie . groupes électrogènes . consommation carburant:
-  formule: 4
   unité: l/h
+  valeur: 4
 
 énergie . groupes électrogènes . empreinte carburant:
-  formule: 2.7
   unité: kgCO2e/l
   note: |
     Facteur d'émission issu de la base empreinte "Essence".
+  valeur: 2.7

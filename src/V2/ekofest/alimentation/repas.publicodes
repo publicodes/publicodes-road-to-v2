@@ -11,7 +11,7 @@
 
 alimentation . repas:
   titre: Repas
-  formule:
+  valeur:
     somme:
       - végétalien
       - végétarien
@@ -21,26 +21,26 @@ alimentation . repas:
       # - poisson 2
 
 alimentation . repas . végétalien:
-  formule: nombre * nosgestesclimat . alimentation . plats . végétalien . empreinte
+  valeur: nombre * nosgestesclimat . alimentation . plats . végétalien . empreinte
 
 alimentation . repas . végétalien . nombre:
-  formule: proportion * informations . nombre de repas total
+  valeur: proportion * informations . nombre de repas total
 
 alimentation . repas . végétalien . proportion:
-  formule:
+  valeur:
     variations:
       - si: proposition = 'végétalien'
         alors: 100%
       - sinon: 0%
 
 alimentation . repas . végétarien:
-  formule: nombre * nosgestesclimat . alimentation . plats . végétarien . empreinte
+  valeur: nombre * nosgestesclimat . alimentation . plats . végétarien . empreinte
 
 alimentation . repas . végétarien . nombre:
-  formule: proportion * informations . nombre de repas total
+  valeur: proportion * informations . nombre de repas total
 
 alimentation . repas . végétarien . proportion:
-  formule:
+  valeur:
     variations:
       - si: proposition = 'végétarien'
         alors: 100%
@@ -49,44 +49,50 @@ alimentation . repas . végétarien . proportion:
       - sinon: 0%
 
 alimentation . repas . viande blanche:
-  formule: nombre * nosgestesclimat . alimentation . plats . viande blanche . empreinte
+  valeur: nombre * nosgestesclimat . alimentation . plats . viande blanche . empreinte
 
 alimentation . repas . viande blanche . nombre:
-  formule: proportion * informations . nombre de repas total
+  valeur: proportion * informations . nombre de repas total
 
 alimentation . repas . viande blanche . proportion:
-  formule:
+  valeur:
     variations:
       - si: proposition = 'viande uniquement'
         alors: proposition . choix viande . proportion viande blanche
       - si: proposition = 'mixte végé viande'
-        alors: proposition . choix viande . proportion viande blanche * proposition . mixte végé viande . proportion viande
+        alors:
+          proposition . choix viande . proportion viande blanche * proposition .
+          mixte végé viande . proportion viande
       - sinon: 0%
 
 alimentation . repas . viande rouge:
-  formule: nombre * nosgestesclimat . alimentation . plats . viande rouge . empreinte
+  valeur: nombre * nosgestesclimat . alimentation . plats . viande rouge . empreinte
 
 alimentation . repas . viande rouge . nombre:
-  formule: proportion * informations . nombre de repas total
+  valeur: proportion * informations . nombre de repas total
 
 alimentation . repas . viande rouge . proportion:
-  formule:
+  valeur:
     variations:
       - si: proposition = 'viande uniquement'
         alors: proposition . choix viande . proportion viande rouge
       - si: proposition = 'mixte végé viande'
-        alors: proposition . choix viande . proportion viande rouge * proposition . mixte végé viande . proportion viande
+        alors:
+          proposition . choix viande . proportion viande rouge * proposition .
+          mixte végé viande . proportion viande
       - sinon: 0%
 
 alimentation . repas . proposition:
   titre: Régime des repas proposés
-  question: Quelle type de régime alimentaire prévoyez-vous ?
-  une possibilité:
-    - végétalien
-    - végétarien
-    - mixte végé viande
-    - viande uniquement
-  par défaut: "'mixte végé viande'"
+  type:
+    une possibilité:
+      - 'végétalien'
+      - 'végétarien'
+      - 'mixte végé viande'
+      - 'viande uniquement'
+  par défaut: 'mixte végé viande'
+  meta:
+    question: Quelle type de régime alimentaire prévoyez-vous ?
 
 alimentation . repas . proposition . végétalien:
   titre: Uniquement végan
@@ -103,16 +109,17 @@ alimentation . repas . proposition . viande uniquement:
 alimentation . repas . proposition . mixte végé viande . proportion végétarien:
   applicable si: proposition = 'mixte végé viande'
   titre: Proportion de repas végétariens
-  question: Comment allez-vous répartir les régimes proposés ?
   plancher: 0
   plafond: 100
   par défaut: 50%
-  unité: "%"
+  unité: '%'
+  meta:
+    question: Comment allez-vous répartir les régimes proposés ?
 
 alimentation . repas . proposition . mixte végé viande . proportion viande:
   applicable si: proposition = 'mixte végé viande'
-  formule: 100% - proportion végétarien
-  unité: "%"
+  unité: '%'
+  valeur: 100% - proportion végétarien
 
 alimentation . repas . proposition . choix viande:
   applicable si:
@@ -120,12 +127,14 @@ alimentation . repas . proposition . choix viande:
       - proposition = 'mixte végé viande'
       - proposition = 'viande uniquement'
   titre: Choix de viande
-  question: Proposerez-vous de la viande blanche ou viande rouge ?
-  une possibilité:
-    - viande blanche
-    - viande rouge
-    - les deux
-  par défaut: "'les deux'"
+  type:
+    une possibilité:
+      - 'viande blanche'
+      - 'viande rouge'
+      - 'les deux'
+  par défaut: 'les deux'
+  meta:
+    question: Proposerez-vous de la viande blanche ou viande rouge ?
 
 alimentation . repas . proposition . choix viande . viande blanche:
   titre: Viande blanche
@@ -135,7 +144,7 @@ alimentation . repas . proposition . choix viande . les deux:
   titre: Les 2
 
 alimentation . repas . proposition . choix viande . proportion viande blanche:
-  formule:
+  valeur:
     variations:
       - si: choix viande = 'viande blanche'
         alors: 100%
@@ -144,7 +153,7 @@ alimentation . repas . proposition . choix viande . proportion viande blanche:
       - sinon: 0%
 
 alimentation . repas . proposition . choix viande . proportion viande rouge:
-  formule:
+  valeur:
     variations:
       - si: choix viande = 'viande rouge'
         alors: 100%

@@ -1,51 +1,56 @@
 transport . public:
   titre: Transport du public
-  formule:
+  unité: kgCO2e
+  valeur:
     somme:
       - voiture
       - avion
       - train
       - commun
-  unité: kgCO2e
 
 transport . public . accessible en transports en commun:
   titre: Accessibilité en transports en commun
-  question: Votre festival est-il facilement accessible en transport en commun ?
   par défaut: non
+  meta:
+    question: Votre festival est-il facilement accessible en transport en commun ?
 
 transport . public . nombre de déplacements:
-  formule:
+  note: |
+    On considère ici les festivaliers mais aussi les équipes d'organisation et les bénévoles.
+  valeur:
     somme:
       - festivaliers
       - bénévoles
-  note: |
-    On considère ici les festivaliers mais aussi les équipes d'organisation et les bénévoles.
 
 transport . public . nombre de déplacements . festivaliers:
-  formule:
+  valeur:
     variations:
       - si: hébergement . public présent
-        alors: hébergement . public . nombre de festivaliers journée + hébergement . public . nombre de festivaliers hébergés / informations . nombre de jours * 1 jour
+        alors: hébergement . public . nombre de festivaliers journée + hébergement .
+          public . nombre de festivaliers hébergés / informations . nombre de
+          jours * 1 jour
       - sinon: informations . nombre de festivaliers
 
 transport . public . nombre de déplacements . bénévoles:
-  formule:
+  valeur:
     variations:
       - si: hébergement . bénévoles . type = "aucun"
-        alors: informations . nombre de bénévoles * informations . nombre de jours / 1 jour
+        alors: informations . nombre de bénévoles * informations . nombre de jours / 1
+          jour
       - sinon: informations . nombre de bénévoles
 
 transport . public . distance AR:
   titre: Distance moyenne aller/retour parcourue par un festivalier (hors avion)
-  question: Quelle est la distane moyenne aller/retour parcourue par un festivalier ?
   unité: km
   plancher: 0
   par défaut: 100
-  note: On inclut ici les festivaliers mais également les bénévoles et les organisateurs.
+  note: On inclut ici les festivaliers mais également les bénévoles et les
+    organisateurs.
+  meta:
+    question: Quelle est la distane moyenne aller/retour parcourue par un festivalier ?
 
 transport . public . parts totales:
   titre: "Vérifiez que total est à 100% :"
-  question: Avez-vous bien vérifier que la somme des parts de transport est bien à 100% ?
   valeur:
     somme:
       - voiture . part
@@ -53,11 +58,13 @@ transport . public . parts totales:
       - train . part
       - commun . part
       - mobilité douce . part
+  meta:
+    question: Avez-vous bien vérifier que la somme des parts de transport est bien à
+      100% ?
 
 transport . public . mobilité douce:
 transport . public . mobilité douce . part:
   titre: Part des festivaliers venant à pied ou à vélo
-  question: Quelle part des festivaliers viennent à pied ou à vélo ?
   plancher: 0
   plafond: 100
   unité: "%"
@@ -67,20 +74,21 @@ transport . public . mobilité douce . part:
         alors: 7
       - sinon: 2
   note: On considère que l'impact de la marche ou du vélo est négligeable.
+  meta:
+    question: Quelle part des festivaliers viennent à pied ou à vélo ?
 
 transport . public . parts totales modes de transport:
-  formule:
+  plafond: 100
+  unité: "%"
+  valeur:
     somme:
       - voiture . part
       - avion . part
       - train . part
       - commun . part
-  plafond: 100
-  unité: "%"
 
 transport . public . voiture . part:
   titre: Part des festivaliers venant en voiture
-  question: Quelle part des festivaliers viennent en voiture ?
   plancher: 0
   plafond: 100
   unité: "%"
@@ -89,10 +97,11 @@ transport . public . voiture . part:
       - si: accessible en transports en commun
         alors: 20
       - sinon: 80
+  meta:
+    question: Quelle part des festivaliers viennent en voiture ?
 
 transport . public . avion . part:
   titre: Part des festivaliers venant en avion
-  question: Quelle part des festivaliers viennent en avion ?
   plancher: 0
   plafond: 100
   unité: "%"
@@ -101,10 +110,11 @@ transport . public . avion . part:
       - si: accessible en transports en commun
         alors: 3
       - sinon: 3
+  meta:
+    question: Quelle part des festivaliers viennent en avion ?
 
 transport . public . train . part:
   titre: Part des festivaliers venant en train
-  question: Quelle part des festivaliers viennent en train ?
   plancher: 0
   plafond: 100
   unité: "%"
@@ -113,10 +123,11 @@ transport . public . train . part:
       - si: accessible en transports en commun
         alors: 20
       - sinon: 10
+  meta:
+    question: Quelle part des festivaliers viennent en train ?
 
 transport . public . commun . part:
   titre: Part des festivaliers venant en transports en commun
-  question: Quelle part des festivaliers viennent en transports en commun (bus, tramway, métro) ?
   plancher: 0
   plafond: 100
   unité: "%"
@@ -125,24 +136,28 @@ transport . public . commun . part:
       - si: accessible en transports en commun
         alors: 50
       - sinon: 5
+  meta:
+    question: Quelle part des festivaliers viennent en transports en commun (bus,
+      tramway, métro) ?
 
 transport . public . voiture:
-  formule: part * nombre de déplacements * distance AR * voiture . empreinte par km / voiture . remplissage moyen
   unité: kgCO2e
   note: On fait l'hypothèse d'un aller/retour par festivalier.
+  valeur: part * nombre de déplacements * distance AR * voiture . empreinte par km
+    / voiture . remplissage moyen
 
 transport . public . avion:
-  formule: part * nombre de déplacements * distance avion AR * avion . empreinte par km
   unité: kgCO2e
+  valeur: part * nombre de déplacements * distance avion AR * avion . empreinte par km
 
 transport . public . avion . distance avion AR:
-  formule: 1500
   unité: km
+  valeur: 1500
 
 transport . public . train:
-  formule: part * nombre de déplacements * distance AR * train . empreinte par km
   unité: kgCO2e
+  valeur: part * nombre de déplacements * distance AR * train . empreinte par km
 
 transport . public . commun:
-  formule: part * nombre de déplacements * distance AR * commun . empreinte par km
   unité: kgCO2e
+  valeur: part * nombre de déplacements * distance AR * commun . empreinte par km

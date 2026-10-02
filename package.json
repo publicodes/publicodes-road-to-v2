@@ -22,11 +22,16 @@
     "@incubateur-ademe/nosgestesclimat": "^4.17.0",
     "@incubateur-ademe/publicodes-commun": "^2.2.0",
     "@publicodes/tools": "^1.10.2",
-    "@publicodes/cli": "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@cc7e655",
-    "@publicodes/codemod": "https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@cc7e655",
+    "@publicodes/cli": "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@3c86165",
+    "@publicodes/codemod": "https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@3c86165",
     "publicodes": "^1.10.3"
   },
   "resolutions": {
     "@publicodes/react-ui": "^1.10.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@publicodes/cli"
+    ]
   }
 }

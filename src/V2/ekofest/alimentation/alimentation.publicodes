@@ -1,14 +1,5 @@
 alimentation:
   titre: Alimentation
-  icônes: 🍽️
-  formule:
-    somme:
-      - repas
-      - petits déjeuners
-      - boissons
-      - ecocups
-      - déchets
-      - artistes
   unité: kgCO2e
   description: |
     C'est l'un des postes d'émissions les plus importants : l'impact des repas carnés est particulièrement important, 
@@ -20,3 +11,14 @@ alimentation:
       - Part de nourriture de saison sur l'ensemble des repas
       - Part de nourriture locale sur l'ensemble des repas
       - Prise en compte du gaspillage ?
+  valeur:
+    somme:
+      - repas
+      - petits déjeuners
+      - boissons
+      - ecocups
+      - déchets
+      - artistes
+  public: oui
+  meta:
+    icônes: 🍽️

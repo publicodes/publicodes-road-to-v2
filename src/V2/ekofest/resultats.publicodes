@@ -3,7 +3,8 @@ resultats:
 
 resultats . bilan total:
   titre: Bilan Carbone de mon évènement
-  formule:
+  unité: kgCO2e
+  valeur:
     somme:
       - alimentation
       - transport
@@ -11,9 +12,8 @@ resultats . bilan total:
       - hébergement
       - énergie
       - communication
-  unité: kgCO2e
 
 resultats . bilan par festivalier:
   titre: Bilan Carbone par festivalier et par jour
-  formule: bilan total / informations . nombre de festivaliers
   unité: kgCO2e
+  valeur: bilan total / informations . nombre de festivaliers
