@@ -1,0 +1,80 @@
+transport:
+  titre: Transport
+  icônes: 🚗
+  formule:
+    somme:
+      - public
+      - artistes
+  description: |
+    Le transport des festivaliers et des artistes est **LE** poste important du bilan carbone d'un festival. 
+    Estimez les distances parcourues par les festivaliers et les artistes pour venir au festival et les modes de transport utilisés.
+
+    *L'**avion** est de loin le mode de transport le plus émetteur de CO2e, mais la **voiture** n'est pas en reste. Encouragez le train ou le covoiturage pour vos déplacements.*
+  unité: kgCO2e
+
+transport . voiture:
+transport . voiture . empreinte par km:
+  formule: 0.231
+  unité: kgCO2e/km
+  note: |
+    Facteur d'émission issu de la base empreinte "Voiture/Motorisation moyenne/2018".
+
+transport . voiture . remplissage moyen:
+  formule: 1.8
+  note: On considère un taux de remplissage moyen de 1,8 personnes par voiture.
+
+transport . avion:
+transport . avion . empreinte par km:
+  formule: 0.187
+  unité: kgCO2e/km
+  note: |
+    Facteur d'émission issu de la base empreinte "Avion passagers/Moyen courrier, 2018/AVEC trainées".
+
+transport . train:
+transport . train . empreinte par km:
+  formule:
+    moyenne:
+      - TGV
+      - TER
+  unité: kgCO2e/km
+  note: |
+    Moyenne entre TGV et TER.
+
+transport . train . empreinte par km . TGV:
+  formule: 0.00293
+  unité: kgCO2e/km
+  note: |
+    Facteur d'émission issu de la base empreinte "TGV/2022".
+
+transport . train . empreinte par km . TER:
+  formule: 0.0277
+  unité: kgCO2e/km
+  note: |
+    Facteur d'émission issu de la base empreinte "TER/2022/Traction moyenne".
+
+transport . commun:
+transport . commun . empreinte par km:
+  formule:
+    moyenne:
+      - bus
+      - métro ou tram
+  unité: kgCO2e/km
+
+transport . commun . empreinte par km . bus:
+  formule: 0.146
+  unité: kgCO2e/km
+  note: |
+    Facteur d'émission issu de la base empreinte "Autobus moyen/Agglomération de 100 000 à 250 000 habitants".
+
+transport . commun . empreinte par km . métro ou tram:
+  formule: 0.00503
+  unité: kgCO2e/km
+  note: |
+    Facteur d'émission issu de la base empreinte "Métro, tramway, trolleybus/2018/Agglomération de 100 000 à 250 000 habitants".
+
+transport . tour bus:
+transport . tour bus . empreinte par km:
+  formule: 0.0295
+  unité: kgCO2e/km
+  note: |
+    Facteur d'émission issu de la base empreinte "Autocar/2018".

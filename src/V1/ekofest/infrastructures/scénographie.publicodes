@@ -1,0 +1,125 @@
+infrastructures . scénographie:
+  titre: Scénographie
+  formule:
+    somme:
+      - fret
+      - matériel
+  unité: kgCO2e
+
+infrastructures . scénographie . nombre petites scènes:
+  titre: Nombre de petites scènes
+  question: Quel est le nombre de petites scènes prévus pour l'événement ?
+  plancher: 0
+  par défaut: 2
+  unité: scène
+
+infrastructures . scénographie . nombre grandes scènes:
+  titre: Nombre de grandes scènes
+  question: Quel est le nombre de grandes scènes prévues pour l'événement ?
+  plancher: 0
+  par défaut: 2
+  unité: scène
+
+infrastructures . scénographie . fret:
+  titre: Transport des scènes
+  formule: tonnes km total * empreinte par tonnes km
+  note: |
+    On considère que l'empreinte des scènes réside dans le fret.
+
+    Selon l'étude [Décarbonons la Culture ! The Shift Project](https://theshiftproject.org/wp-content/uploads/2021/12/211130-TSP-PTEF-Rapport-final-Culture-v3.pdf),
+    Le seul montage des scènes d’un festival comme Les Vieilles Charrues implique une quarantaine de semi-remorques pour 4 scènes (voir [cet artcle de France Info](https://france3-regions.francetvinfo.fr/bretagne/2013/07/18/l-antiseche-pour-etre-incollable-sur-les-vieilles-charrues-289717.html)).
+
+    Néanmoins, il est fait l'hypothèse de partir sur une moyenne de 7 semi-remorques pour une grande scène, 3 pour une plus petite.
+
+    Comme expliqué dans l'étude "Décarbonons la Culture !", ces données sont celles des Vieilles Charrues, 
+    Par ailleurs, on ne sait pas si cette donnée inclut la logistique alimentaire.
+
+    Pour cette première estimation, il est considéré que le tonnage transporté est en moyenne à 8,5 tonnes sur 1500km (A/R)
+  unité: kgCO2e
+
+infrastructures . scénographie . fret . nombre de camion par petite scène:
+  formule: 2
+  unité: camion/scène
+  note: |
+    Nombre de camions nécessaires pour le transport d'une petite scène.
+
+infrastructures . scénographie . fret . nombre de camion par grande scène:
+  formule: 6
+  unité: camion/scène
+  note: |
+    Nombre de camions nécessaires pour le transport d'une grande scène.
+
+infrastructures . scénographie . fret . empreinte par tonnes km:
+  formule: 0.0823
+  unité: kgCO2e/t.km
+  note: |
+    Facteur d'émission issu de la base empreinte "Articulé/< 34 tonnes/Diesel routier, incorporation 7 % de biodiesel".
+
+infrastructures . scénographie . fret . tonnes km total:
+  formule:
+    somme:
+      - nombre petites scènes * fret . nombre de camion par petite scène * tonnes km par camion
+      - nombre grandes scènes * fret . nombre de camion par grande scène * tonnes km par camion
+  unité: t.km
+
+infrastructures . scénographie . fret . tonnes km par camion:
+  formule: charge moyenne * distance moyenne
+  unité: t.km/camion
+
+infrastructures . scénographie . fret . distance moyenne:
+  formule: 1000
+  unité: km
+  note: |
+    Distance moyenne parcourue par les semi-remorques pour le transport du matériel de scène en incluant le retour à vide.
+
+infrastructures . scénographie . fret . charge moyenne:
+  formule: 8.5
+  unité: t/camion
+  note: |
+    Charge moyenne des semi-remorques pour le transport du matériel de scène.
+
+infrastructures . scénographie . matériel:
+  titre: Location de matériel
+  formule: dépenses * ratio monétaire * facteur amortissement
+  unité: kgCO2e
+  note: |
+    Selon la méthode du simulateur [SEEDS](https://nuage.arviva.org/index.php/s/Pzzm9KbAwwL4gPR), 
+    les émissions de CO2 liées à la location de matériel technique sont estimées à partir du montant 
+    dépensés pour leur location puis amorties sur via la durée de location et leur durée de vie.
+
+    A titre indicatif:
+      - Projecteur : 600€ soit 240kgCO2e  
+      - Enceinte : 500€ soit 200kgCO2e 
+      - Console : 1500€ soit 600kgCO2e 
+      - Machine à fumée : 400€ soit 160kgCO2e  
+      - Micros : 200€ soit 80kgCO2e  
+      - Vidéoprojecteur : 145kgCO2e (déjà présent dans la base ADEME)
+
+infrastructures . scénographie . matériel . facteur amortissement:
+  formule: informations . nombre de jours / (commun . jours par an * 5)
+  note: Matériel amorti sur 5 ans.
+
+infrastructures . scénographie . matériel . dépenses:
+  titre: Dépenses pour la location de matériel de scénographie
+  question: A combien estimez-vous vos dépenses de location de matériel technique (scène, son, lumière, vidéo etc...) ?
+  plancher: 0
+  par défaut: 10000000
+  unité: €HT
+
+infrastructures . scénographie . matériel . ratio monétaire:
+  formule: 0.400
+  unité: kgCO2e/€HT
+  note: |
+    Ratio monétaire issu de la Base Empreinte "Service/Produits informatiques, électroniques et optiques".
+
+infrastructures . scénographie . décor:
+  applicable si: décor présent
+  formule: 0
+  unité: kgCO2e
+  note: |
+    Pour le moment, nous faisons l'hypothèse que les décors et costumes sont de la responsabilité des artistes.
+
+infrastructures . scénographie . décor présent:
+  # titre: Décors et costumes
+  # question: Prévoyez-vous des décors et costumes pour la scénographie de l'événement ?
+  par défaut: non

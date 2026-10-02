@@ -1,0 +1,36 @@
+# importer!:
+#   depuis:
+#     nom: "@incubateur-ademe/nosgestesclimat"
+#   les règles:
+#     - alimentation . petit déjeuner . tartine:
+#         applicable si: oui
+#     - alimentation . petit déjeuner . fruits:
+#         applicable si: oui
+#     - alimentation . petit déjeuner . yaourt:
+#         applicable si: oui
+
+alimentation . petits déjeuners:
+  titre: Petits déjeuners
+  applicable si: petits déjeuners présent
+  formule: nombre * continental
+  note: On considère le petits déjeuner continental de Nos Gestes Climat
+
+alimentation . petits déjeuners . continental:
+  titre: Petit déjeuner continental
+  formule:
+    somme:
+      - nosgestesclimat . alimentation . petit déjeuner . tartine
+      - nosgestesclimat . alimentation . petit déjeuner . fruits
+      - nosgestesclimat . alimentation . petit déjeuner . yaourt
+  unité: kgCO2e/repas
+
+alimentation . petits déjeuners présent:
+  titre: Petits déjeuners sur l'événement
+  question: Proposez-vous des petits déjeuners sur place ?
+  par défaut: oui
+
+alimentation . petits déjeuners . nombre:
+  formule: nombre par jour * informations . nombre de jours
+
+alimentation . petits déjeuners . nombre par jour:
+  formule: 1 repas * informations . nombre de personnes par jour

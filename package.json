@@ -1,0 +1,32 @@
+{
+  "name": "publicodes-road-to-v2",
+  "description": "Environment to test model across publicodes V1 and V2",
+  "version": "0.1.0",
+  "author": "Clément Auger",
+  "license": "MIT",
+  "type": "module",
+  "main": "publicodes-build/index.js",
+  "types": "publicodes-build/index.d.ts",
+  "files": [
+    "publicodes-build"
+  ],
+  "scripts": {
+    "compile": "publicodes compile",
+    "compile:v2": "publicodes2 compile",
+    "codemod": "@publicodes/codemod codemod"
+  },
+  "peerDependencies": {
+    "publicodes": "^1.10.3"
+  },
+  "devDependencies": {
+    "@incubateur-ademe/nosgestesclimat": "^4.17.0",
+    "@incubateur-ademe/publicodes-commun": "^2.2.0",
+    "@publicodes/tools": "^1.10.2",
+    "@publicodes/cli": "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@cc7e655",
+    "@publicodes/codemod": "https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@cc7e655",
+    "publicodes": "^1.10.3"
+  },
+  "resolutions": {
+    "@publicodes/react-ui": "^1.10.0"
+  }
+}

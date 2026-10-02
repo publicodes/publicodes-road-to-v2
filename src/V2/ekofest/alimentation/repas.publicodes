@@ -1,0 +1,153 @@
+# importer!:
+#   depuis:
+#     nom: "@incubateur-ademe/nosgestesclimat"
+#   les règles:
+#     - alimentation . plats . végétalien . empreinte
+#     - alimentation . plats . végétarien . empreinte
+#     - alimentation . plats . viande blanche . empreinte
+#     - alimentation . plats . viande rouge . empreinte
+#     # - alimentation . plats . poisson 1 . empreinte
+#     # - alimentation . plats . poisson 2 . empreinte
+
+alimentation . repas:
+  titre: Repas
+  formule:
+    somme:
+      - végétalien
+      - végétarien
+      - viande blanche
+      - viande rouge
+      # - poisson 1
+      # - poisson 2
+
+alimentation . repas . végétalien:
+  formule: nombre * nosgestesclimat . alimentation . plats . végétalien . empreinte
+
+alimentation . repas . végétalien . nombre:
+  formule: proportion * informations . nombre de repas total
+
+alimentation . repas . végétalien . proportion:
+  formule:
+    variations:
+      - si: proposition = 'végétalien'
+        alors: 100%
+      - sinon: 0%
+
+alimentation . repas . végétarien:
+  formule: nombre * nosgestesclimat . alimentation . plats . végétarien . empreinte
+
+alimentation . repas . végétarien . nombre:
+  formule: proportion * informations . nombre de repas total
+
+alimentation . repas . végétarien . proportion:
+  formule:
+    variations:
+      - si: proposition = 'végétarien'
+        alors: 100%
+      - si: proposition = 'mixte végé viande'
+        alors: proposition . mixte végé viande . proportion végétarien
+      - sinon: 0%
+
+alimentation . repas . viande blanche:
+  formule: nombre * nosgestesclimat . alimentation . plats . viande blanche . empreinte
+
+alimentation . repas . viande blanche . nombre:
+  formule: proportion * informations . nombre de repas total
+
+alimentation . repas . viande blanche . proportion:
+  formule:
+    variations:
+      - si: proposition = 'viande uniquement'
+        alors: proposition . choix viande . proportion viande blanche
+      - si: proposition = 'mixte végé viande'
+        alors: proposition . choix viande . proportion viande blanche * proposition . mixte végé viande . proportion viande
+      - sinon: 0%
+
+alimentation . repas . viande rouge:
+  formule: nombre * nosgestesclimat . alimentation . plats . viande rouge . empreinte
+
+alimentation . repas . viande rouge . nombre:
+  formule: proportion * informations . nombre de repas total
+
+alimentation . repas . viande rouge . proportion:
+  formule:
+    variations:
+      - si: proposition = 'viande uniquement'
+        alors: proposition . choix viande . proportion viande rouge
+      - si: proposition = 'mixte végé viande'
+        alors: proposition . choix viande . proportion viande rouge * proposition . mixte végé viande . proportion viande
+      - sinon: 0%
+
+alimentation . repas . proposition:
+  titre: Régime des repas proposés
+  question: Quelle type de régime alimentaire prévoyez-vous ?
+  une possibilité:
+    - végétalien
+    - végétarien
+    - mixte végé viande
+    - viande uniquement
+  par défaut: "'mixte végé viande'"
+
+alimentation . repas . proposition . végétalien:
+  titre: Uniquement végan
+
+alimentation . repas . proposition . végétarien:
+  titre: Uniquement végétarien
+
+alimentation . repas . proposition . mixte végé viande:
+  titre: Mixte végétarien / viande
+
+alimentation . repas . proposition . viande uniquement:
+  titre: Uniquement carné
+
+alimentation . repas . proposition . mixte végé viande . proportion végétarien:
+  applicable si: proposition = 'mixte végé viande'
+  titre: Proportion de repas végétariens
+  question: Comment allez-vous répartir les régimes proposés ?
+  plancher: 0
+  plafond: 100
+  par défaut: 50%
+  unité: "%"
+
+alimentation . repas . proposition . mixte végé viande . proportion viande:
+  applicable si: proposition = 'mixte végé viande'
+  formule: 100% - proportion végétarien
+  unité: "%"
+
+alimentation . repas . proposition . choix viande:
+  applicable si:
+    une de ces conditions:
+      - proposition = 'mixte végé viande'
+      - proposition = 'viande uniquement'
+  titre: Choix de viande
+  question: Proposerez-vous de la viande blanche ou viande rouge ?
+  une possibilité:
+    - viande blanche
+    - viande rouge
+    - les deux
+  par défaut: "'les deux'"
+
+alimentation . repas . proposition . choix viande . viande blanche:
+  titre: Viande blanche
+alimentation . repas . proposition . choix viande . viande rouge:
+  titre: Viande rouge
+alimentation . repas . proposition . choix viande . les deux:
+  titre: Les 2
+
+alimentation . repas . proposition . choix viande . proportion viande blanche:
+  formule:
+    variations:
+      - si: choix viande = 'viande blanche'
+        alors: 100%
+      - si: choix viande = 'les deux'
+        alors: 50%
+      - sinon: 0%
+
+alimentation . repas . proposition . choix viande . proportion viande rouge:
+  formule:
+    variations:
+      - si: choix viande = 'viande rouge'
+        alors: 100%
+      - si: choix viande = 'les deux'
+        alors: 50%
+      - sinon: 0%

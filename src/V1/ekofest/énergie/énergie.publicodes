@@ -1,0 +1,98 @@
+# importer!:
+#   depuis:
+#     nom: "@incubateur-ademe/nosgestesclimat"
+#   les règles:
+#     - logement . chauffage . gaz . intensité carbone
+
+énergie:
+  titre: Énergie
+  icônes: ⚡️
+  description: |
+    Cette section concerne la consommation d'**électricité**, de **fioul et gaz** et des **groupes électrogènes** pour l'événement. 
+    Les valeurs pré-entrées sont basées sur des **consommations moyennes par festivalier** pour ce type d'évènement.
+
+    *L'empreinte des groupes électrogènes est particulièrement importante devant celle de l'électricité.*
+  formule:
+    somme:
+      - électricité
+      - autre
+      - groupes électrogènes
+  unité: kgCO2e
+
+énergie . consommation par défaut:
+  formule: 0.6 kWh * informations . nombre de festivaliers
+  unité: kWh
+  note: |
+    Selon l'étude [Décarbonons la Culture ! The Shift Project](https://theshiftproject.org/wp-content/uploads/2021/12/211130-TSP-PTEF-Rapport-final-Culture-v3.pdf):
+    il est tout à fait pertinent d'utiliser l’[étude d’ENERIS](https://www.ressource0.com/wp-content/uploads/2012/09/guideSpectacle-vivant1.pdf) produite en 2011 
+    qui propose une consommation électrique de 0,6 KWh par festivalier en moyenne.
+
+énergie . électricité:
+  titre: Électricité
+  formule: consommation * commun . mix électrique . empreinte carbone
+  unité: kgCO2e
+
+énergie . électricité . consommation:
+  titre: Consommation d'électricité totale
+  question: Quelle est votre consommation d'électricité pour l'événement ?
+  plancher: 0
+  unité: kWh
+  par défaut:
+    variations:
+      - si:
+          toutes ces conditions:
+            - autre présent
+            - groupes électrogènes présent
+        alors: consommation par défaut / 4
+      - si:
+          toutes ces conditions:
+            - autre présent = non
+            - groupes électrogènes présent
+        alors: consommation par défaut / 2
+      - sinon: consommation par défaut
+
+énergie . autre:
+  titre: Fioul et gaz
+  applicable si: autre présent
+  formule:
+    somme:
+      - gaz
+      - fioul
+  unité: kgCO2e
+
+énergie . autre présent:
+  titre: Utilisation d'une autre source d'énergie
+  question: Utilisez-vous une autre source d'énergie pour l'événement (gaz, fioul) ?
+  par défaut: non
+
+énergie . autre . gaz:
+  formule: consommation * nosgestesclimat . logement . chauffage . gaz . intensité carbone
+  unité: kgCO2e
+
+énergie . autre . gaz . consommation:
+  titre: Consommation de gaz totale
+  question: Quelle est votre consommation de gaz pour l'événement ?
+  plancher: 0
+  unité: kWh
+  par défaut:
+    variations:
+      - si: groupes électrogènes présent
+        alors: consommation par défaut / 4
+      - sinon: consommation par défaut / 2
+
+énergie . autre . fioul:
+  formule: consommation * empreinte
+  unité: kgCO2e
+
+énergie . autre . fioul . consommation:
+  titre: Consommation de fioul totale
+  question: Quelle est votre consommation de fioul pour l'événement ?
+  plancher: 0
+  unité: kWh
+  par défaut: consommation par défaut / 4
+
+énergie . autre . fioul . empreinte:
+  formule: 0.303
+  unité: kgCO2e/kWh
+  note: |
+    Facteur d'émission issu de la base empreinte "Fioul domestique" (kgCO2e/kWhPCS).

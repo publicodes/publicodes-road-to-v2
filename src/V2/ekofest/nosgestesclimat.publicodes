@@ -1,0 +1,24 @@
+importer!:
+  depuis:
+    nom: "@incubateur-ademe/nosgestesclimat"
+  les règles:
+    - alimentation . boisson . tasse de café
+    - alimentation . boisson . tasse de thé
+    - alimentation . boisson . sucrées . facteur
+    - alimentation . boisson . alcool . facteur
+    - alimentation . boisson . eau en bouteille . empreinte
+    - alimentation . petit déjeuner . tartine:
+        applicable si: oui
+    - alimentation . petit déjeuner . fruits:
+        applicable si: oui
+    - alimentation . petit déjeuner . yaourt:
+        applicable si: oui
+    - alimentation . plats . végétalien . empreinte
+    - alimentation . plats . végétarien . empreinte
+    - alimentation . plats . viande blanche . empreinte
+    - alimentation . plats . viande rouge . empreinte
+    - divers . textile . t-shirt . empreinte carbone
+    - divers . textile . sweat . empreinte carbone
+    - logement . vacances . empreinte hotel par nuit
+    - logement . vacances . camping . empreinte par nuit
+    - logement . chauffage . gaz . intensité carbone
