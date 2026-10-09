@@ -20,9 +20,9 @@ alimentation . petits déjeuners . continental:
   unité: kgCO2e/repas
   valeur:
     somme:
-      - nosgestesclimat . alimentation . petit déjeuner . tartine
-      - nosgestesclimat . alimentation . petit déjeuner . fruits
-      - nosgestesclimat . alimentation . petit déjeuner . yaourt
+      - nosgestesclimat . alimentation . petit déjeuner . tartine / 1 repas
+      - nosgestesclimat . alimentation . petit déjeuner . fruits / 1 repas
+      - nosgestesclimat . alimentation . petit déjeuner . yaourt  / 1 repas
 
 alimentation . petits déjeuners présent:
   titre: Petits déjeuners sur l'événement

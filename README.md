@@ -27,3 +27,37 @@ Interface du compilateur V2 (cf. `packages/compiler/bin/cmd_compile.ml`) :
 
 > Seules les règles marquées `public: oui` (ou toutes avec
 > `--default-to-public`) apparaissent dans `export default rules`.
+
+## Migrer un modèle vers la V2 (`codemod`)
+
+```sh
+pnpm run codemod src/V2/ekofest      # parcourt le dossier récursivement
+pnpm run codemod src/V2/ekofest/*.publicodes   # ou des fichiers précis
+```
+
+Transformations appliquées sur place (fichiers `.publicodes` uniquement) :
+
+| Transformation                | Effet                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------ |
+| `renameFormuleToValeur`       | `formule:` → `valeur:`                                                         |
+| `moveNonAuthorizedKeysToMeta` | clés non reconnues (`question:`, `titre:`…) → `meta:` (récursif, gère `avec:`) |
+| `removeDoubleQuotes`          | `'xxx'` / `"yyy"` → `xxx`                                                      |
+
+⚠️ Le codemod écrit **sur place, sans sauvegarde**. Commitez avant.
+
+Ce qu'il ne fait **pas** (d'après son README) :
+
+- la version des packages dans `package.json` (à mettre à jour à la main) ;
+- la syntaxe exotique de `variations` (à migrer **avant**) ;
+- le changement d'ordre de priorité des `remplacement` ;
+- les appels `evaluate` avec expression publicodes dans le code JS.
+
+### Pourquoi un wrapper ?
+
+`scripts/codemod.mjs` existe parce que le package publié est cassé sur deux points :
+
+1. Il déclare `"bin": "./bin/update-v2.js"` alors que le fichier livré est
+   `bin/codemod-v2.js` → aucun binaire lié dans `node_modules/.bin`, d'où
+   `@publicodes/codemod: No such file or directory`.
+2. Il n'accepte que des **fichiers** (aucune récursion) : lui passer un dossier
+   échoue en `ENOENT`.

@@ -28,7 +28,8 @@ informations . nombre de festivaliers:
   note: On parle de la somme des entrées uniques par jour.
   par défaut: 25000
   meta:
-    question: Combien de participants attendez-vous sur l'ensemble de l'évènements
+    question:
+      Combien de participants attendez-vous sur l'ensemble de l'évènements
       (compter 2 entrées si une personne est présente 2 jours) ?
 
 informations . nombre de festivaliers par jour:

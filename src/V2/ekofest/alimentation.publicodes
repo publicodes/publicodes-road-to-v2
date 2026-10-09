@@ -19,6 +19,5 @@ alimentation:
       - ecocups
       - déchets
       - artistes
-  public: oui
   meta:
     icônes: 🍽️

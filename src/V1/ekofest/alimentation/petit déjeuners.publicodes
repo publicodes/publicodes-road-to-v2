@@ -19,9 +19,9 @@ alimentation . petits déjeuners . continental:
   titre: Petit déjeuner continental
   formule:
     somme:
-      - nosgestesclimat . alimentation . petit déjeuner . tartine
-      - nosgestesclimat . alimentation . petit déjeuner . fruits
-      - nosgestesclimat . alimentation . petit déjeuner . yaourt
+      - nosgestesclimat . alimentation . petit déjeuner . tartine / 1 repas
+      - nosgestesclimat . alimentation . petit déjeuner . fruits / 1 repas
+      - nosgestesclimat . alimentation . petit déjeuner . yaourt  / 1 repas
   unité: kgCO2e/repas
 
 alimentation . petits déjeuners présent:

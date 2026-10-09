@@ -24,6 +24,8 @@
     "@publicodes/cli": "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@870",
     "@publicodes/codemod": "https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@870",
     "@publicodes/tools": "^1.10.2",
+    "@types/node": "^26.6.4",
+    "mitata": "^1.0.34",
     "publicodes": "^1.10.3"
   },
   "resolutions": {

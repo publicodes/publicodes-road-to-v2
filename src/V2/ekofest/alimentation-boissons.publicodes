@@ -44,7 +44,8 @@ alimentation . boissons . froide . eau . empreinte:
 
 alimentation . boissons . froide . eau en bouteille bénévoles:
   applicable si: eau en bouteille bénévoles présent
-  valeur: quantité * nosgestesclimat . alimentation . boisson . eau en bouteille .
+  valeur:
+    quantité * nosgestesclimat . alimentation . boisson . eau en bouteille .
     empreinte
 
 alimentation . boissons . froide . eau en bouteille bénévoles présent:
