@@ -1,0 +1,54 @@
+alimentation:
+alimentation . boissons:
+  valeur:
+    somme:
+      - café
+      - thé
+  # Devrait remonter une erreur car unités non compatibles (et non kgCO2e)
+  unité: kgCO2e
+
+alimentation . boissons . café:
+  valeur: nombre * nosgestesclimat . alimentation . boisson . tasse de café
+
+alimentation . boissons . café . nombre:
+  valeur: nombre par jour * informations . nombre de jours
+
+alimentation . boissons . café . nombre par jour:
+  note: On fait l'hypothèse qu'en moyenne, la consommation sera de 1 café par
+    personne et par jour.
+  valeur: quantité par jour et par personne * informations . nombre de festivaliers par jour
+
+alimentation . boissons . café . quantité par jour et par personne:
+  titre: Tasses de café par personne et par jour
+  plancher: 0
+  par défaut: 1
+  unité: tasse
+  meta:
+    question: Quelle quantité de café est consommée par personne et par jour ?
+
+alimentation . boissons . thé:
+  valeur: nombre * nosgestesclimat . alimentation . boisson . tasse de thé
+
+alimentation . boissons . thé . nombre:
+  valeur: nombre par jour * informations . nombre de jours
+
+alimentation . boissons . thé . nombre par jour:
+  note: On fait l'hypothèse qu'en moyenne, la consommation sera de 1 thé pour 10
+    personnes par jour.
+  valeur: quantité par jour et par personne * informations . nombre de festivaliers par jour
+
+alimentation . boissons . thé . quantité par jour et par personne:
+  titre: Tasses de thé par personne et par jour
+  plancher: 0
+  par défaut: 10% * 1 tasse
+  unité: tasse
+  meta:
+    question: Quelle quantité de thé est consommée par personne et par jour ?
+
+nosgestesclimat:
+nosgestesclimat . alimentation:
+nosgestesclimat . alimentation . boisson:
+nosgestesclimat . alimentation . boisson . tasse de café:
+  valeur: 0.1008 kgCO2e/tasseeeeee
+nosgestesclimat . alimentation . boisson . tasse de thé:
+  valeur: 0.006639999999999999 kgCO2e/tasse

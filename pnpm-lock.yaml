@@ -18,11 +18,11 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0(publicodes@https://pkg.pr.new/publicodes/publicodes@6b85118)
       '@publicodes/cli':
-        specifier: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@3c86165
-        version: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@3c86165
+        specifier: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@870
+        version: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@870
       '@publicodes/codemod':
-        specifier: https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@3c86165
-        version: https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@3c86165
+        specifier: https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@870
+        version: https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@870
       '@publicodes/tools':
         specifier: ^1.10.2
         version: https://pkg.pr.new/publicodes/publicodes/@publicodes/tools@6b85118(jiti@2.7.0)(lightningcss@1.32.0)(publicodes@https://pkg.pr.new/publicodes/publicodes@6b85118)
@@ -242,13 +242,47 @@ packages:
     resolution: {integrity: sha512-QCJIZoVJxV7jywgVAUlsQwl3dr3Sa21kfi5z9KrYolbexWJUtFSEtMoNiBWojD05mYycLnB50gp/VxlGdaOCRA==}
     engines: {node: '>=18.0.0'}
 
-  '@publicodes/cli@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@3c86165':
-    resolution: {integrity: sha512-k/X+kt7tllvYIR2A1YuQNTiWdQjnFrZKKgEKGXqihnrvFaVNZDOlKxeAk96wElH7yMMl26k92Wq8BKLvrEKxxw==, tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@3c86165}
+  '@publicodes/cli-darwin-arm64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-arm64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    resolution: {tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-arm64@9629386756fa6874ca0fec614dcdad2130b7958b}
     version: 2.0.0-alpha.0
+    cpu: [arm64]
+    os: [darwin]
     hasBin: true
 
-  '@publicodes/codemod@https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@3c86165':
-    resolution: {integrity: sha512-xjslxV4k19bE4It9T4iklly60D54PAZWhbouz93uZ1NZDjS4cMUgX78dUk9jkIHL9yBMBJEv1FxGBaROpbL7iw==, tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@3c86165}
+  '@publicodes/cli-darwin-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-x64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    resolution: {tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-x64@9629386756fa6874ca0fec614dcdad2130b7958b}
+    version: 2.0.0-alpha.0
+    cpu: [x64]
+    os: [darwin]
+    hasBin: true
+
+  '@publicodes/cli-linux-arm64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-arm64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    resolution: {tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-arm64@9629386756fa6874ca0fec614dcdad2130b7958b}
+    version: 2.0.0-alpha.0
+    cpu: [arm64]
+    os: [linux]
+    hasBin: true
+
+  '@publicodes/cli-linux-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-x64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    resolution: {tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-x64@9629386756fa6874ca0fec614dcdad2130b7958b}
+    version: 2.0.0-alpha.0
+    cpu: [x64]
+    os: [linux]
+    hasBin: true
+
+  '@publicodes/cli-win32-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-win32-x64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    resolution: {tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-win32-x64@9629386756fa6874ca0fec614dcdad2130b7958b}
+    version: 2.0.0-alpha.0
+    cpu: [x64]
+    os: [win32]
+    hasBin: true
+
+  '@publicodes/cli@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@870':
+    resolution: {tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@870}
+    version: 2.0.0-alpha.0
+
+  '@publicodes/codemod@https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@870':
+    resolution: {integrity: sha512-xjslxV4k19bE4It9T4iklly60D54PAZWhbouz93uZ1NZDjS4cMUgX78dUk9jkIHL9yBMBJEv1FxGBaROpbL7iw==, tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@870}
     version: 2.0.0
     engines: {node: '>=22.0.0'}
     hasBin: true
@@ -1135,9 +1169,30 @@ snapshots:
       wrap-ansi: 7.0.0
       wsl-utils: 0.4.0
 
-  '@publicodes/cli@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@3c86165': {}
+  '@publicodes/cli-darwin-arm64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-arm64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    optional: true
 
-  '@publicodes/codemod@https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@3c86165':
+  '@publicodes/cli-darwin-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-x64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    optional: true
+
+  '@publicodes/cli-linux-arm64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-arm64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    optional: true
+
+  '@publicodes/cli-linux-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-x64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    optional: true
+
+  '@publicodes/cli-win32-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-win32-x64@9629386756fa6874ca0fec614dcdad2130b7958b':
+    optional: true
+
+  '@publicodes/cli@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@870':
+    optionalDependencies:
+      '@publicodes/cli-darwin-arm64': https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-arm64@9629386756fa6874ca0fec614dcdad2130b7958b
+      '@publicodes/cli-darwin-x64': https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-x64@9629386756fa6874ca0fec614dcdad2130b7958b
+      '@publicodes/cli-linux-arm64': https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-arm64@9629386756fa6874ca0fec614dcdad2130b7958b
+      '@publicodes/cli-linux-x64': https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-x64@9629386756fa6874ca0fec614dcdad2130b7958b
+      '@publicodes/cli-win32-x64': https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-win32-x64@9629386756fa6874ca0fec614dcdad2130b7958b
+
+  '@publicodes/codemod@https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@870':
     dependencies:
       yaml: 2.9.1
 

@@ -1,0 +1,19 @@
+informations:
+
+informations . nombre de jours:
+  par défaut: 2
+  unité: jour
+  meta:
+    question: Combien de jours dure votre évènment ?
+
+informations . nombre de festivaliers:
+  par défaut: 25000
+  meta:
+    question:
+      Combien de participants attendez-vous sur l'ensemble de l'évènements
+      (compter 2 entrées si une personne est présente 2 jours) ?
+
+informations . nombre de festivaliers par jour:
+  valeur: nombre de festivaliers / nombre de jours
+  # si spécifié comme tel, infère l'unité de café comme ".kgCO2e" ...
+  # unité: /jour
