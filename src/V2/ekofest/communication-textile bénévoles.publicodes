@@ -10,22 +10,25 @@ communication . textile bénévoles:
   unité: kgCO2e
   valeur:
     variations:
-      - si: textile bénévoles . type = "t shirt"
-        alors: informations . nombre de bénévoles * nosgestesclimat . divers . textile .
+      - si: textile bénévoles . type = 't shirt'
+        alors:
+          informations . nombre de bénévoles * nosgestesclimat . divers . textile .
           t-shirt . empreinte carbone / amortissement
-      - si: textile bénévoles . type = "sweat"
-        alors: informations . nombre de bénévoles * nosgestesclimat . divers . textile .
+      - si: textile bénévoles . type = 'sweat'
+        alors:
+          informations . nombre de bénévoles * nosgestesclimat . divers . textile .
           sweat . empreinte carbone / amortissement
-      - si: textile bénévoles . type = "aucun"
+      - si: textile bénévoles . type = 'aucun'
         alors: 0
 
 communication . textile bénévoles . type:
   titre: Vêtements pour les équipes et bénévoles
-  une possibilité:
-    - t shirt
-    - sweat
-    - aucun
-  par défaut: "t shirt"
+  type:
+    une possibilité:
+      - 't shirt'
+      - 'sweat'
+      - 'aucun'
+  par défaut: 't shirt'
   meta:
     question: Prévoyez-vous des vêtements pour votre équipe ?
 
