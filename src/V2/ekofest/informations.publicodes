@@ -27,6 +27,7 @@ informations . nombre de festivaliers:
   plancher: 1
   note: On parle de la somme des entrées uniques par jour.
   par défaut: 25000
+  type: nombre
   meta:
     question:
       Combien de participants attendez-vous sur l'ensemble de l'évènements

@@ -59,7 +59,7 @@ nosgestesclimat . alimentation . plats . viande blanche . empreinte:
   valeur: 1.66 kgCO2e/repas
 nosgestesclimat . alimentation . plats . viande rouge:
 nosgestesclimat . alimentation . plats . viande rouge . empreinte:
-  valeur: 5.1 kgCO2e/repas
+  valeur: 5.11 kgCO2e/repas
 nosgestesclimat . divers:
 nosgestesclimat . divers . textile:
 nosgestesclimat . divers . textile . t-shirt:

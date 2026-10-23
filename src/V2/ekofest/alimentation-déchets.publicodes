@@ -24,7 +24,6 @@ alimentation . déchets . recyclage:
     question: Allez-vous mettre en place un tri sélectif et un recyclage des déchets ?
 
 alimentation . déchets . gobelets:
-  non applicable si: ecocups présent
   unité: kgCO2e
   note: On considère 2 gobelets par personne par jour.
   valeur: 2 gobelet * informations . nombre de jours * informations . nombre de
@@ -41,6 +40,7 @@ alimentation . déchets . gobelets . empreinte:
 
 alimentation . déchets . gobelets . type:
   titre: Type de gobelets
+  non applicable si: ecocups présent
   type:
     une possibilité:
       - 'plastique'

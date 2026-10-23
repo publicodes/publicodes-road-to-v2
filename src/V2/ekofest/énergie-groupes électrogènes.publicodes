@@ -22,8 +22,8 @@
   par défaut:
     variations:
       - si: autre présent
-        alors: consommation par défaut / 4 / production
-      - sinon: consommation par défaut / 2 / production
+        alors: consommation par défaut / (4 * production)
+      - sinon: consommation par défaut / (2 * production)
   meta:
     question: Combien de groupes électrogènes prévoyez-vous d'utiliser ?
 

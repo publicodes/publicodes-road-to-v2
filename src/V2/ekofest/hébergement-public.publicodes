@@ -24,16 +24,18 @@ hébergement . public . nombre de nuits camping:
   valeur: nombre de festivaliers hébergés * informations . nombre de nuits
 
 hébergement . public . nombre de festivaliers hébergés:
-  valeur: part * informations . nombre de festivaliers
+  valeur: part * informations . nombre de festivaliers / 100
+  type: nombre
 
 hébergement . public . nombre de festivaliers journée:
-  valeur: (100% - part) * informations . nombre de festivaliers
+  valeur: (100% - part) * informations . nombre de festivaliers / 100
+  type: nombre
 
 hébergement . public . part:
   titre: Part des festivaliers qui dorment sur place
   par défaut: 30
   plancher: 0
   plafond: 100
-  unité: "%"
+  unité: '%'
   meta:
     question: Quelle part des festivaliers dorment sur place ?

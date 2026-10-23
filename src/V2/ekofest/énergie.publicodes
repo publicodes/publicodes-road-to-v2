@@ -55,7 +55,6 @@
 
 énergie . autre:
   titre: Fioul et gaz
-  applicable si: autre présent
   unité: kgCO2e
   valeur:
     somme:
@@ -70,11 +69,13 @@
 
 énergie . autre . gaz:
   unité: kgCO2e
-  valeur: consommation * nosgestesclimat . logement . chauffage . gaz . intensité
+  valeur:
+    consommation * nosgestesclimat . logement . chauffage . gaz . intensité
     carbone
 
 énergie . autre . gaz . consommation:
   titre: Consommation de gaz totale
+  applicable si: autre présent
   plancher: 0
   unité: kWh
   par défaut:
@@ -91,6 +92,7 @@
 
 énergie . autre . fioul . consommation:
   titre: Consommation de fioul totale
+  applicable si: autre présent
   plancher: 0
   unité: kWh
   par défaut: consommation par défaut / 4
