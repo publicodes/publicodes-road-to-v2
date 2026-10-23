@@ -1,0 +1,11 @@
+a:
+  valeur: 100 m / 4 m
+  public: oui
+
+b:
+  valeur: 100 m / 2 / 2 m
+  public: oui
+
+c:
+  valeur: 100 m / 2 m / 2
+  public: oui

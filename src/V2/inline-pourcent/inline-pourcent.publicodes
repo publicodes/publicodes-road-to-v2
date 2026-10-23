@@ -1,0 +1,11 @@
+a:
+  valeur: b * 200
+  public: oui
+
+b:
+  valeur: 100 % - part
+  public: oui
+
+part:
+  valeur: 20%
+  public: oui
