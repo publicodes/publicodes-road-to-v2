@@ -2,14 +2,13 @@ import { run, bench, summary, do_not_optimize, group } from 'mitata';
 
 import LegacyEngine from 'publicodes';
 
-// Test data imports
 import legacyRules from '../src/V1/ekofest/publicodes-build/publicodes-road-to-v2.model.json' with { type: 'json' };
 import legacySituations from '../src/V1/ekofest/situations.ts';
 import rules from '../src/V2/ekofest/model.publicodes.js';
 import situations, { referenceRule } from '../src/V2/ekofest/situations.ts';
 import { evaluateOptions } from './utils.ts';
 
-/** Première situation de chaque fichier, pour les benchs mono-situation. */
+/** Première situation de chaque fichier pour les benchs. */
 const legacyReferenceSituation = legacySituations[0];
 const referenceSituation = situations[0];
 

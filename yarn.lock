@@ -264,39 +264,46 @@
     wrap-ansi "^7.0.0"
     wsl-utils "^0.4.0"
 
-"@publicodes/cli-darwin-arm64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-arm64@9629386756fa6874ca0fec614dcdad2130b7958b":
-  version "2.0.0-alpha.0"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-arm64@9629386756fa6874ca0fec614dcdad2130b7958b#547b4cfbcf8e78b8f083a1d96074269897c360b7"
+"@publicodes/cli-darwin-arm64@2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@publicodes/cli-darwin-arm64/-/cli-darwin-arm64-2.0.0-alpha.2.tgz#e07ab28b9b6c6e5895554f356ac0843efd33d216"
+  integrity sha512-OGRKBVlEJNoxlRV1jdK9JYdqeHncVn7Re/fqKJDtthZ/77pbW2C2EfRrMKhtW+brqCIhm7mUxFtQbum5Hq9UMw==
 
-"@publicodes/cli-darwin-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-x64@9629386756fa6874ca0fec614dcdad2130b7958b":
-  version "2.0.0-alpha.0"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-x64@9629386756fa6874ca0fec614dcdad2130b7958b#31f28e73736b710b7610f5e08ebd5bbf2a99550c"
+"@publicodes/cli-darwin-x64@2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@publicodes/cli-darwin-x64/-/cli-darwin-x64-2.0.0-alpha.2.tgz#b2c16d7b203dd0a9301255cc66214ae4aa583af0"
+  integrity sha512-PpbH6lUeSStArBT0NZ9uKwIjhsBQNSj1mIWPe7zrl7ZCnxVijhM2B7ZsXRNmpk2X8SZatYTlR8YWXCV+6sDikA==
 
-"@publicodes/cli-linux-arm64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-arm64@9629386756fa6874ca0fec614dcdad2130b7958b":
-  version "2.0.0-alpha.0"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-arm64@9629386756fa6874ca0fec614dcdad2130b7958b#7224b1c8094a4136dadbd8947f2d9a9ebf1f7c84"
+"@publicodes/cli-linux-arm64@2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@publicodes/cli-linux-arm64/-/cli-linux-arm64-2.0.0-alpha.2.tgz#b8dde5430219a8ef0cda0db94c133343f68b8fa0"
+  integrity sha512-dwf+bFqHHV6J5PzUcUzOLLdB8SCo+tcATCG1G/znhMgnRBaFh0BQOtD3aXRaluYNBYUNmjeXd2AKGu5VR4mzYA==
 
-"@publicodes/cli-linux-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-x64@9629386756fa6874ca0fec614dcdad2130b7958b":
-  version "2.0.0-alpha.0"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-x64@9629386756fa6874ca0fec614dcdad2130b7958b#960a042208dc903a2c46ef68bb327633a17ff8d2"
+"@publicodes/cli-linux-x64@2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@publicodes/cli-linux-x64/-/cli-linux-x64-2.0.0-alpha.2.tgz#2ba060b06ab9986c654d2205a579a8f5aef4014c"
+  integrity sha512-49iApJYfeGIN9Aub+A+P8mWMn4RleYI74zbiCR3eJLJL597zmDsGD4O8qBsLfOaqnemp376P6kik7DAsR77OAA==
 
-"@publicodes/cli-win32-x64@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-win32-x64@9629386756fa6874ca0fec614dcdad2130b7958b":
-  version "2.0.0-alpha.0"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-win32-x64@9629386756fa6874ca0fec614dcdad2130b7958b#a0bb0a3c8eefe59ab969d62b7acb7170e5f94b6f"
+"@publicodes/cli-win32-x64@2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@publicodes/cli-win32-x64/-/cli-win32-x64-2.0.0-alpha.2.tgz#d68566b950d2a77a64bf94b8e31f2a13fee25eb0"
+  integrity sha512-XiFvtxBI5spH1pKM4xs4GScoGNlzodC5VoJ+7aCYba+ia3yqD3TxsrBY9z4u7uoMWd0ClzwiC7WNsPBX+7pqdw==
 
-"@publicodes/cli@https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@870":
-  version "2.0.0-alpha.0"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli@870#b542a64a5bc3f8ff087bd5ff60f796dc8cf691c4"
+"@publicodes/cli@2.0.0-alpha.2":
+  version "2.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@publicodes/cli/-/cli-2.0.0-alpha.2.tgz#744c3029c59a2443fcd0c0820601b078750d2b7c"
+  integrity sha512-i4gsXkkU5+gdap5Kt8H+8xm45e6iY2f8fvtR0DHtbBzAd840x9rmA2SiqIqr4aKNjoVFeLnAAGQ0ql6+DX4FXg==
   optionalDependencies:
-    "@publicodes/cli-darwin-arm64" "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-arm64@9629386756fa6874ca0fec614dcdad2130b7958b"
-    "@publicodes/cli-darwin-x64" "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-darwin-x64@9629386756fa6874ca0fec614dcdad2130b7958b"
-    "@publicodes/cli-linux-arm64" "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-arm64@9629386756fa6874ca0fec614dcdad2130b7958b"
-    "@publicodes/cli-linux-x64" "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-linux-x64@9629386756fa6874ca0fec614dcdad2130b7958b"
-    "@publicodes/cli-win32-x64" "https://pkg.pr.new/publicodes/publicodes/@publicodes/cli-win32-x64@9629386756fa6874ca0fec614dcdad2130b7958b"
+    "@publicodes/cli-darwin-arm64" "2.0.0-alpha.2"
+    "@publicodes/cli-darwin-x64" "2.0.0-alpha.2"
+    "@publicodes/cli-linux-arm64" "2.0.0-alpha.2"
+    "@publicodes/cli-linux-x64" "2.0.0-alpha.2"
+    "@publicodes/cli-win32-x64" "2.0.0-alpha.2"
 
-"@publicodes/codemod@https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@870":
+"@publicodes/codemod@2.0.0":
   version "2.0.0"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/codemod@870#5153d73fca3b9b1a81de0bbc322fa7bd35ffeac7"
+  resolved "https://registry.yarnpkg.com/@publicodes/codemod/-/codemod-2.0.0.tgz#123d0df32a5cd1d5d9fcb546221ec627231a10e4"
+  integrity sha512-ww1RfTJK5nX4D56Y6m5aezr6CtiNefIlB/1uvZigB6oSqynaQvM4TbYm0qWXjF89Oxxspv59HWsTA3/kj6ISHw==
   dependencies:
     yaml "^2.3.4"
 
@@ -1055,7 +1062,12 @@ process@^0.11.1:
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==
 
-publicodes@^1.10.3, "publicodes@workspace:^":
+publicodes@^1.10.4:
+  version "1.10.4"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.10.4.tgz#e2d8dc998f209e56fdb046210c8ea5340679d543"
+  integrity sha512-twj6iKNSYY4a03RqkYJ7q0TKOWZQVUraF715FTLLadgmX/nboPzB4Rdn2IuT3b5tFJnCrhQdh5rKYyS3lWp+vQ==
+
+"publicodes@workspace:^":
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.10.3.tgz#561fb9aef5dde35f13772017286d908c30eb0423"
   integrity sha512-25rohaG6HmB2oQsQL1JxvjdFPdVrupyxGLBsmQg3obpBHkoPx+vZDUZ1hn+SctH9cRYmk8YbO+bMPU79lDWSqA==
