@@ -1,0 +1,61 @@
+artistes:
+  titre: Artistes
+  note: |
+    Par défaut, on considère que les artistes consomment un repas sur place, un petit déjeuner s'ils sont hébergés.
+  valeur:
+    somme:
+      - repas
+      - petits déjeuners
+      - eau en bouteille
+
+artistes . repas:
+  valeur: alimentation . repas
+  contexte:
+    informations . nombre de repas total: informations . nombre artistes * 1 repas
+    alimentation . repas . proposition: alimentation . artistes . repas . type
+
+artistes . repas . type:
+  titre: Régime alimentaire des artistes
+  type:
+    une possibilité:
+      - 'végétalien'
+      - 'végétarien'
+      - 'mixte végé viande'
+      - 'viande uniquement'
+  par défaut: 'mixte végé viande'
+  meta:
+    question: Quelle type de régime alimentaire prévoyez-vous pour les artistes ?
+
+artistes . repas . type . végétalien:
+  titre: Uniquement végan
+artistes . repas . type . végétarien:
+  titre: Uniquement végétarien
+artistes . repas . type . mixte végé viande:
+  titre: Mixte végétarien / viande
+artistes . repas . type . viande uniquement:
+  titre: Uniquement carné
+
+artistes . petits déjeuners:
+  # applicable si: hébergement . artistes présent
+  applicable si: oui
+  valeur: alimentation . petits déjeuners
+  contexte:
+    alimentation . petits déjeuners . nombre: informations . nombre artistes * 1 repas
+
+artistes . eau en bouteille:
+  applicable si: eau en bouteille présent
+  note: |
+    On fait l'hypothèse que les artistes consomment de l'eau en bouteille.
+    Si eau en bouteille: 0.27 kgCO2e/l
+  valeur:
+    quantité * nosgestesclimat . alimentation . boisson . eau en bouteille .
+    empreinte
+
+artistes . eau en bouteille présent:
+  titre: Eau en bouteille pour les artistes
+  par défaut: oui
+  meta:
+    question: Allez-vous prévoir de l'eau en bouteille pour les artistes ?
+
+artistes . eau en bouteille . quantité:
+  valeur: 0.5 l * informations . nombre artistes

@@ -7,12 +7,12 @@ resultats . bilan total:
   public: oui
   valeur:
     somme:
-      - alimentation
-      - transport
-      - infrastructures
-      - hébergement
-      - énergie
-      - communication
+      - alimentation . total
+      - transport . total
+      - infrastructures . total
+      - hébergement . total
+      - énergie . total
+      - communication . total
 
 resultats . bilan par festivalier:
   titre: Bilan Carbone par festivalier et par jour

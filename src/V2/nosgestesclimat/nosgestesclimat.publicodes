@@ -1,0 +1,97 @@
+# importer!:
+#   meta:
+#     depuis:
+#       nom: "@incubateur-ademe/nosgestesclimat"
+#     les règles:
+#       - alimentation . boisson . tasse de café
+#       - alimentation . boisson . tasse de thé
+#       - alimentation . boisson . sucrées . facteur
+#       - alimentation . boisson . alcool . facteur
+#       - alimentation . boisson . eau en bouteille . empreinte
+#       - alimentation . petit déjeuner . tartine:
+#           applicable si: oui
+#       - alimentation . petit déjeuner . fruits:
+#           applicable si: oui
+#       - alimentation . petit déjeuner . yaourt:
+#           applicable si: oui
+#       - alimentation . plats . végétalien . empreinte
+#       - alimentation . plats . végétarien . empreinte
+#       - alimentation . plats . viande blanche . empreinte
+#       - alimentation . plats . viande rouge . empreinte
+#       - divers . textile . t-shirt . empreinte carbone
+#       - divers . textile . sweat . empreinte carbone
+#       - logement . vacances . empreinte hotel par nuit
+#       - logement . vacances . camping . empreinte par nuit
+#       - logement . chauffage . gaz . intensité carbone
+
+alimentation:
+alimentation . boisson:
+alimentation . boisson . tasse de café:
+  public:
+  valeur: 0.1008 kgCO2e/tasse
+alimentation . boisson . tasse de thé:
+  public:
+  valeur: 0.006639999999999999 kgCO2e/tasse
+alimentation . boisson . sucrées:
+alimentation . boisson . sucrées . facteur:
+  public:
+  valeur: 0.6865 kgCO2e/l
+alimentation . boisson . alcool:
+alimentation . boisson . alcool . facteur:
+  public:
+  valeur: 1.3166666666666667 kgCO2e/l
+alimentation . boisson . eau en bouteille:
+alimentation . boisson . eau en bouteille . empreinte:
+  public:
+  valeur: 0.32 kgCO2e/l
+alimentation . petit déjeuner:
+alimentation . petit déjeuner . tartine:
+  public:
+  valeur: 0.1721 kgCO2e
+alimentation . petit déjeuner . fruits:
+  public:
+  valeur: 0.111 kgCO2e
+alimentation . petit déjeuner . yaourt:
+  public:
+  valeur: 0.245 kgCO2e
+alimentation . plats:
+alimentation . plats . végétalien:
+alimentation . plats . végétalien . empreinte:
+  public:
+  valeur: 0.59 kgCO2e/repas
+alimentation . plats . végétarien:
+alimentation . plats . végétarien . empreinte:
+  public:
+  valeur: 0.91 kgCO2e/repas
+alimentation . plats . viande blanche:
+alimentation . plats . viande blanche . empreinte:
+  public:
+  valeur: 1.66 kgCO2e/repas
+alimentation . plats . viande rouge:
+alimentation . plats . viande rouge . empreinte:
+  public:
+  valeur: 5.11 kgCO2e/repas
+divers:
+divers . textile:
+divers . textile . t-shirt:
+divers . textile . t-shirt . empreinte carbone:
+  public:
+  valeur: 5.259437424054778 kgCO2e
+divers . textile . sweat:
+divers . textile . sweat . empreinte carbone:
+  public:
+  valeur: 13.324641674749655 kgCO2e
+logement:
+logement . vacances:
+logement . vacances . empreinte hotel par nuit:
+  public:
+  valeur: 6.93 kgCO2e/nuit
+logement . vacances . camping:
+logement . vacances . camping . empreinte par nuit:
+  public:
+  valeur: 1.4 kgCO2e/nuit
+logement . chauffage:
+logement . chauffage . gaz:
+logement . chauffage . gaz . intensité carbone:
+  public:
+  valeur: 0.215 kgCO2e/kWh

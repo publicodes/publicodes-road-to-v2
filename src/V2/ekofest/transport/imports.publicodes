@@ -1,0 +1,4 @@
+hébergement:
+  importer: ekofest/hébergement
+informations:
+  importer: ekofest/informations

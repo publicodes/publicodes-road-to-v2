@@ -1,0 +1,18 @@
+informations:
+  importer: ./informations
+transport:
+  importer: ./transport
+hébergement:
+  importer: ./hébergement
+énergie:
+  importer: ./énergie
+infrastructures:
+  importer: ./infrastructures
+communication:
+  importer: ./communication
+alimentation:
+  importer: ./alimentation
+commun:
+  importer: commun
+nosgestesclimat:
+  importer: nosgestesclimat

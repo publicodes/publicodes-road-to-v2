@@ -1,0 +1,43 @@
+# importer!:
+#   depuis:
+#     nom: "@incubateur-ademe/nosgestesclimat"
+#   les règles:
+#     - logement . vacances . empreinte hotel par nuit
+
+bénévoles:
+  titre: Hébergement des bénévoles
+  unité: kgCO2e
+  valeur:
+    variations:
+      - si: type = 'camping'
+        alors:
+          nombre de nuits hôtel * nosgestesclimat . logement . vacances . empreinte
+          hotel par nuit
+      - si: type = 'hôtel'
+        alors:
+          nombre de nuits hôtel * nosgestesclimat . logement . vacances . empreinte
+          hotel par nuit
+      - sinon: 0
+
+bénévoles . type:
+  titre: Hébergement des bénévoles
+  type:
+    une possibilité:
+      - 'camping'
+      - 'hôtel'
+      - 'aucun'
+  par défaut: 'aucun'
+  meta:
+    question: Prenez-vous en charge l'hébergement en hôtel des organisateurs et
+      bénévoles du festival ?
+
+bénévoles . type . camping:
+  titre: Oui, en camping
+bénévoles . type . hôtel:
+  titre: Oui, en hôtel
+bénévoles . type . aucun:
+  titre: Non
+
+bénévoles . nombre de nuits hôtel:
+  unité: nuit
+  valeur: informations . nombre de bénévoles * informations . nombre de nuits

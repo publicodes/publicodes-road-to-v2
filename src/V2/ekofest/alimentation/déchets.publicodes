@@ -1,0 +1,237 @@
+déchets:
+  titre: Déchets
+  unité: kgCO2e
+  note: |
+    Derrière la production des déchets, se cache ici une production et non seulement la comptabilité de l'empreinte de la fin de vie des déchets 
+    finalement assez dérisoire. On a donc ici ce que contiendront les poubelles et qui sont des éléments directement issus du festival
+    (vaisselle en cartons, papier).
+  valeur:
+    somme:
+      - gobelets * surplus
+      - couverts * surplus
+      - assiettes * surplus
+
+déchets . surplus:
+  note: |
+    L'objectif ici est d'avoir une idée de l'impact du reste des déchets du festival en aplicant un facteur correctif (défini arbitrairement)
+    qui a l'avantage de tenir compte des pratiques du festival.
+  valeur: 110%
+
+déchets . recyclage:
+  titre: Mise en place du tri sélectif
+  par défaut: non
+  meta:
+    question: Allez-vous mettre en place un tri sélectif et un recyclage des déchets ?
+
+déchets . gobelets:
+  unité: kgCO2e
+  note: On considère 2 gobelets par personne par jour.
+  valeur: 2 gobelet * informations . nombre de jours * informations . nombre de
+    personnes par jour * empreinte
+
+déchets . gobelets . empreinte:
+  unité: kgCO2e/gobelet
+  valeur:
+    variations:
+      - si: gobelets . type = 'plastique'
+        alors: type . plastique . poids * empreinte plastique par kg
+      - si: gobelets . type = 'carton'
+        alors: type . carton . poids * empreinte carton par kg
+
+déchets . gobelets . type:
+  titre: Type de gobelets
+  non applicable si: ecocups présent
+  type:
+    une possibilité:
+      - 'plastique'
+      - 'carton'
+  par défaut: 'plastique'
+  meta:
+    question: Quel type de gobelets allez-vous utiliser ?
+
+déchets . gobelets . type . plastique:
+  titre: Plastique jetable
+déchets . gobelets . type . plastique . poids:
+  unité: kg/gobelet
+  valeur: 0.010
+
+déchets . gobelets . type . carton:
+déchets . gobelets . type . carton . poids:
+  unité: kg/gobelet
+  note: On considère 10g par gobelet.
+  valeur: 0.010
+
+déchets . couverts:
+  unité: kgCO2e
+  valeur:
+    2 couvert/repas * informations . nombre de jours * informations . nombre
+    de repas par jour * empreinte
+
+déchets . couverts . empreinte:
+  unité: kgCO2e/couvert
+  valeur:
+    variations:
+      - si: couverts . type = 'plastique'
+        alors: type . plastique . poids * empreinte plastique par kg
+      - si: couverts . type = 'bois'
+        alors: type . bois . poids * empreinte bois par kg
+
+déchets . couverts . type:
+  titre: Type de couverts
+  type:
+    une possibilité:
+      - 'plastique'
+      - 'bois'
+  par défaut: 'plastique'
+  meta:
+    question: Quel type de couverts allez-vous utiliser ?
+
+déchets . couverts . type . plastique:
+  titre: Plastique jetable
+déchets . couverts . type . plastique . poids:
+  unité: kg/couvert
+  valeur: 0.002
+
+déchets . couverts . type . bois:
+déchets . couverts . type . bois . poids:
+  unité: kg/couvert
+  note: On considère 2g par couvert.
+  valeur: 0.002
+
+déchets . assiettes:
+  unité: kgCO2e
+  valeur: 1 assiette/repas * informations . nombre de jours * informations .
+    nombre de repas par jour * empreinte
+
+déchets . assiettes . empreinte:
+  unité: kgCO2e/assiette
+  valeur:
+    variations:
+      - si: assiettes . type = 'plastique'
+        alors: type . plastique . poids * empreinte plastique par kg
+      - si: assiettes . type = 'carton'
+        alors: type . carton . poids * empreinte carton par kg
+
+déchets . assiettes . type:
+  titre: Type d'assiettes
+  type:
+    une possibilité:
+      - 'plastique'
+      - 'carton'
+  par défaut: 'plastique'
+  meta:
+    question: Quel type de gobelets allez-vous utiliser ?
+
+déchets . assiettes . type . plastique:
+  titre: Plastique jetable
+déchets . assiettes . type . plastique . poids:
+  unité: kg/assiette
+  valeur: 0.005
+
+déchets . assiettes . type . carton:
+déchets . assiettes . type . carton . poids:
+  unité: kg/assiette
+  note: On considère 10g par assiette.
+  valeur: 0.005
+
+déchets . empreinte plastique par kg:
+  unité: kgCO2e/kg
+  note: |
+    On considère du platisque polypropylène (PP) neuf et l'impact fin de vie.
+  valeur: fabrication + fin de vie
+
+déchets . empreinte plastique par kg . fabrication:
+  unité: kgCO2e/kg
+  note: |
+    On considère du platisque polypropylène (PP) neuf.
+    FE issus de la base empreinte (PP - polypropylène)
+  valeur: 2
+
+déchets . empreinte plastique par kg . fin de vie:
+  unité: kgCO2e/kg
+  valeur:
+    variations:
+      - si: recyclage
+        alors: fin de vie recyclage
+      - sinon: fin de vie non recyclé
+
+déchets . empreinte plastique par kg . fin de vie recyclage:
+  unité: kgCO2e/kg
+  note: |
+    FE issus de la base empreinte (Emballages/Plastique rigide PP bouteilles/Recyclage - Impacts)
+  valeur: 0.434
+
+déchets . empreinte plastique par kg . fin de vie non recyclé:
+  unité: kgCO2e/kg
+  note: |
+    FE issus de la base empreinte (Emballages/Plastique pétrosourcé PP/Incinération - Impacts)
+  valeur: 2.77
+
+déchets . empreinte carton par kg:
+  unité: kgCO2e/kg
+  note: |
+    On considère que le carton est recyclé (hypothèse conservatrice, contrairement à ce qu'on peut penser, 
+    le carton recyclé est plus impactant que le carton neuf).
+  valeur: fabrication + fin de vie
+
+déchets . empreinte carton par kg . fabrication:
+  unité: kgCO2e/kg
+  note: |
+    On considère que le carton est recyclé (hypothèse conservatrice, contrairement à ce qu'on peut penser, 
+    le carton recyclé est plus impactant que le carton neuf).
+
+    FE issus de la base empreinte (Carton/recyclé)
+  valeur: 0.670
+
+déchets . empreinte carton par kg . fin de vie:
+  unité: kgCO2e/kg
+  valeur:
+    variations:
+      - si: recyclage
+        alors: fin de vie recyclage
+      - sinon: fin de vie non recyclé
+
+déchets . empreinte carton par kg . fin de vie recyclage:
+  unité: kgCO2e/kg
+  note: |
+    FE issus de la base empreinte (Emballages/Carton/Recyclage - Impacts)
+  valeur: 0.992
+
+déchets . empreinte carton par kg . fin de vie non recyclé:
+  unité: kgCO2e/kg
+  note: |
+    FE issus de la base empreinte (Emballages/Carton/Incinération - Impacts)
+  valeur: 0.120
+
+déchets . empreinte bois par kg:
+  unité: kgCO2e/kg
+  note: |
+    On considère que le carton est recyclé (hypothèse conservatrice, contrairement à ce qu'on peut penser, 
+    le carton recyclé est plus impactant que le carton neuf).
+  valeur: fabrication + fin de vie
+
+déchets . empreinte bois par kg . fabrication:
+  unité: kgCO2e/kg
+  note: |
+    FE issus de la base empreinte (Carton/recyclé)
+  valeur: 0.670
+
+déchets . empreinte bois par kg . fin de vie:
+  unité: kgCO2e/kg
+  valeur:
+    variations:
+      - si: recyclage
+        alors: fin de vie recyclage
+      - sinon: fin de vie non recyclé
+
+déchets . empreinte bois par kg . fin de vie recyclage:
+  unité: kgCO2e/kg
+  note: |
+    FE issus de la base empreinte (Emballages/Carton/Recyclage - Impacts)
+  valeur: 0.992
+
+déchets . empreinte bois par kg . fin de vie non recyclé:
+  unité: kgCO2e/kg
+  note: |
+    FE issus de la base empreinte (Emballages/Carton/Incinération - Impacts)
+  valeur: 0.120
