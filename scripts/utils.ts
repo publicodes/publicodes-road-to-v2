@@ -161,6 +161,8 @@ export interface SituationReport {
   v2Reference: ComparedValue;
   referenceMatches: boolean;
   divergences: Divergence[];
+  /** Écarts d'unité sur une valeur nulle : signalés, mais non bloquants. */
+  unitWarnings: Divergence[];
   comparedRulesCount: number;
 }
 
@@ -184,6 +186,10 @@ export const printSkippedSituation = (index: number, reason: string): void => {
   console.log(c.yellow(`Situation #${index} — ignorée (${reason})\n`));
 };
 
+export const printWarning = (message: string): void => {
+  console.warn(c.yellow(`⚠ ${message}\n`));
+};
+
 /**
  * L'unité n'a de sens que si les deux moteurs ont produit une valeur : une
  * règle non applicable en V1 n'a pas d'unité à comparer.
@@ -199,18 +205,50 @@ const formatUnitComparison = (divergence: Divergence): string => {
   return divergence.unitMismatch ? c.bold(c.red('≠')) : c.dim('=');
 };
 
+/**
+ * Les écarts d'unité sur une valeur nulle ne sont pas observables : la valeur
+ * `0` ne porte pas d'unité et le moteur V1 la perd au cours de l'évaluation, là
+ * où V2 expose l'unité statique de la règle. Ils sont donc affichés à part, sans
+ * rendre la situation divergente.
+ */
+const printUnitWarnings = (warnings: Divergence[]): void => {
+  const rows = [...warnings]
+    .sort((a, b) => a.rule.localeCompare(b.rule))
+    .map((divergence) => [
+      divergence.rule,
+      formatValue(divergence.v1.value),
+      formatUnit(divergence.v1.unit),
+      formatUnit(divergence.v2.unit),
+    ]);
+  console.log(
+    indent(
+      c.yellow(
+        `⚠ Unités non comparables (valeur nulle) — ${warnings.length} règle(s) :`,
+      ),
+    ),
+  );
+  console.log(
+    indent(renderTable(['Règle', 'Valeur', 'Unité V1', 'Unité V2'], rows)),
+  );
+};
+
 export const printSituationReport = (report: SituationReport): void => {
   const header = `Situation #${report.index}`;
+  const warnings =
+    report.unitWarnings.length > 0
+      ? c.yellow(` (${report.unitWarnings.length} avertissement(s) d'unité)`)
+      : '';
 
   if (report.referenceMatches && report.divergences.length === 0) {
-    console.log(c.green(`✓ ${header} — résultats identiques`));
+    console.log(c.green(`✓ ${header} — résultats identiques`) + warnings);
+    console.log('');
     return;
   }
 
   console.log(
     c.red(
       `✗ ${header} — ${report.divergences.length} règle(s) divergente(s) sur ${report.comparedRulesCount}`,
-    ),
+    ) + warnings,
   );
   console.log(
     `  ${c.bold(report.referenceRule)} : ${report.referenceMatches ? c.green('identique') : c.red('DIFFÉRENT')}`,
@@ -282,12 +320,14 @@ export const printSummary = ({
   comparedRulesCount,
   divergentSituationsCount,
   totalDivergences,
+  unitWarnings,
 }: {
   referenceRule: string;
   situationsCount: number;
   comparedRulesCount: number;
   divergentSituationsCount: number;
   totalDivergences: number;
+  unitWarnings: Divergence[];
 }): void => {
   if (divergentSituationsCount === 0) {
     console.log(
@@ -295,11 +335,14 @@ export const printSummary = ({
         `✓ Les ${situationsCount} situations donnent des résultats identiques sur « ${referenceRule} » (${comparedRulesCount} règles comparées).`,
       ),
     );
-    return;
+  } else {
+    console.log(
+      c.red(
+        `✗ ${divergentSituationsCount}/${situationsCount} situation(s) divergente(s), ${totalDivergences} écart(s) de règle détecté(s).`,
+      ),
+    );
   }
-  console.log(
-    c.red(
-      `✗ ${divergentSituationsCount}/${situationsCount} situation(s) divergente(s), ${totalDivergences} écart(s) de règle détecté(s).`,
-    ),
-  );
+  if (unitWarnings.length > 0) {
+    printUnitWarnings(unitWarnings);
+  }
 };

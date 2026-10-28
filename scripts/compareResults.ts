@@ -1,9 +1,10 @@
 /**
  * Compare les résultats des modèles Publicodes V1 et V2 sur chaque situation.
  *
- * Les deux modèles doivent décrire le même modèle métier : une règle exposée
- * par le modèle V2 mais absente du modèle V1 interrompt le script, plutôt que
- * de produire un rapport partiel.
+ * Les deux modèles doivent décrire le même modèle métier : les règles exposées
+ * par les deux modèles sont comparées. Une règle exposée par le modèle V2 mais
+ * absente du modèle V1 ne peut pas être comparée : elle est signalée par un
+ * avertissement puis exclue de la comparaison, sans interrompre le script.
  *
  * Pour chaque situation, la règle de référence et l'ensemble des règles du
  * modèle sont évalués avec les deux moteurs : les valeurs (avec une tolérance
@@ -38,6 +39,7 @@ import {
   printSituationReport,
   printSkippedSituation,
   printSummary,
+  printWarning,
 } from './utils.ts';
 
 /**
@@ -52,7 +54,27 @@ type RuleName = keyof typeof rules;
 const RELATIVE_TOLERANCE = 1e-9;
 
 const v1RuleNames = new Set(Object.keys(v1Rules));
-const comparedRules = Object.keys(rules) as RuleName[];
+const v2RuleNames = Object.keys(rules) as RuleName[];
+
+const missingInV1 = v2RuleNames.filter((rule) => !v1RuleNames.has(rule));
+const comparedRules = v2RuleNames.filter((rule) => v1RuleNames.has(rule));
+
+/**
+ * Sans la règle de référence dans les deux modèles, le rapport n'a plus de sens :
+ * c'est la seule règle dont l'absence interrompt le script.
+ */
+const assertReferenceRuleIsComparable = (): void => {
+  if (!(referenceRule in rules)) {
+    throw new Error(
+      `La règle de référence « ${referenceRule} » est absente du modèle V2.`,
+    );
+  }
+  if (!v1RuleNames.has(referenceRule)) {
+    throw new Error(
+      `La règle de référence « ${referenceRule} » est absente du modèle V1.`,
+    );
+  }
+};
 
 /** L'unité est absente des règles non numériques. */
 const unitOf = (rule: RuleName): string | undefined => {
@@ -61,30 +83,6 @@ const unitOf = (rule: RuleName): string | undefined => {
   return 'unit' in candidate && typeof candidate.unit === 'string'
     ? candidate.unit
     : undefined;
-};
-
-/**
- * Les deux modèles décrivent le même modèle métier : une règle du modèle V2
- * absente du modèle V1 rend la comparaison caduque. On échoue donc
- * immédiatement, plutôt que de produire un rapport partiel.
- *
- * ⚠️ Le modèle V1 compilé contient aussi les règles privées et les dépendances
- * externes (`nosgestesclimat`), que le compilateur V2 n'exporte pas : la
- * relation attendue est une inclusion (V2 ⊆ V1), pas une égalité.
- */
-const assertModelsAreComparable = (): void => {
-  if (!(referenceRule in rules)) {
-    throw new Error(
-      `La règle de référence « ${referenceRule} » est absente du modèle V2.`,
-    );
-  }
-  const missingInV1 = comparedRules.filter((rule) => !v1RuleNames.has(rule));
-  if (missingInV1.length > 0) {
-    throw new Error(
-      `${missingInV1.length} règle(s) du modèle V2 absente(s) du modèle V1 :\n` +
-        missingInV1.map((rule) => `  - ${rule}`).join('\n'),
-    );
-  }
 };
 
 /** Le moteur V1 confond « non applicable » et « non défini » (valeur `null`). */
@@ -169,6 +167,18 @@ const compareRule = (
   return undefined;
 };
 
+/**
+ * Un écart d'unité n'est pas observable sur une valeur nulle : le moteur V1 perd
+ * l'unité d'une évaluation qui vaut `0`, alors que V2 expose l'unité statique de
+ * la règle. Ces écarts sont donc signalés sans être comptés comme divergences.
+ */
+const isUnitWarning = (divergence: Divergence): boolean =>
+  !divergence.failed &&
+  !divergence.valueMismatch &&
+  divergence.unitMismatch &&
+  divergence.v1.value === 0 &&
+  divergence.v2.value === 0;
+
 const compareSituation = (
   situation: Situation,
   v1Engine: LegacyEngine,
@@ -197,12 +207,13 @@ const compareSituation = (
     referenceMatches:
       valuesAreEqual(v1ReferenceValue.value, v2ReferenceValue.value) &&
       unitsAreEqual(v1ReferenceValue.unit, v2ReferenceValue.unit),
-    divergences,
+    divergences: divergences.filter((divergence) => !isUnitWarning(divergence)),
+    unitWarnings: divergences.filter(isUnitWarning),
     comparedRulesCount: comparedRules.length,
   };
 };
 
-assertModelsAreComparable();
+assertReferenceRuleIsComparable();
 
 printHeader({
   referenceRule,
@@ -210,8 +221,17 @@ printHeader({
   comparedRulesCount: comparedRules.length,
 });
 
+if (missingInV1.length > 0) {
+  printWarning(
+    `${missingInV1.length} règle(s) du modèle V2 absente(s) du modèle V1, exclue(s) de la comparaison :\n` +
+      missingInV1.map((rule) => `  - ${rule}`).join('\n'),
+  );
+}
+
 let divergentSituationsCount = 0;
 let totalDivergences = 0;
+/** Écarts d'unité non bloquants, dédoublonnés par règle pour le récapitulatif. */
+const unitWarnings = new Map<string, Divergence>();
 
 situations.forEach((situation, index) => {
   const situationNumber = index + 1;
@@ -248,6 +268,9 @@ situations.forEach((situation, index) => {
     divergentSituationsCount += 1;
     totalDivergences += report.divergences.length;
   }
+  report.unitWarnings.forEach((warning) =>
+    unitWarnings.set(warning.rule, warning),
+  );
 });
 
 printSummary({
@@ -256,6 +279,7 @@ printSummary({
   comparedRulesCount: comparedRules.length,
   divergentSituationsCount,
   totalDivergences,
+  unitWarnings: [...unitWarnings.values()],
 });
 
 if (divergentSituationsCount > 0) {
