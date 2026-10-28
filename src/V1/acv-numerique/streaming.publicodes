@@ -1,0 +1,173 @@
+streaming:
+  titre: Visionnage d'une vidéo en streaming
+  formule:
+    somme:
+      - streaming . terminaux
+      - streaming . transmission
+      - streaming . data center
+  unité: gCO2e
+
+streaming . durée:
+  titre: Temps de visionnage
+  question: Quelle est la durée de visionnage ?
+  par défaut: 60
+  unité: minute
+
+streaming . durée en heure:
+  formule: streaming . durée / 60 minute/h
+  unité: h
+
+streaming . qualité:
+  titre: Qualité de la vidéo
+  question: Quelle est la qualité de la vidéo ?
+  avec:
+    SD:
+      titre: SD
+    HD:
+      titre: HD
+    ultra HD:
+      titre: 4K / Ultra HD
+  une possibilité:
+    - SD
+    - HD
+    - ultra HD
+  par défaut: "'HD'"
+
+streaming . qualité . débit:
+  formule:
+    variations:
+      - si: streaming . qualité = 'SD'
+        alors: 0.7
+      - si: streaming . qualité = 'HD'
+        alors: 3
+      - si: streaming . qualité = 'ultra HD'
+        alors: 7
+  unité: Go/h
+
+streaming . taille:
+  titre: Volume de données de la vidéo
+  formule: streaming . durée en heure * streaming . qualité . débit
+  unité: Go
+
+streaming . appareil:
+  titre: Appareil utilisé
+  question: Sur quel appareil visionnez-vous la vidéo ?
+  avec:
+    ordinateur fixe et écran:
+      titre: Ordinateur fixe et écran
+    ordinateur portable:
+      titre: Ordinateur portable
+    tablette:
+      titre: Tablette
+    smartphone:
+      titre: Smartphone
+    TV:
+      titre: TV
+    videoprojecteur:
+      titre: Videoprojecteur
+    smart TV:
+      titre: Smart TV
+    moyenne:
+      titre: Mix moyen d'appareils
+  une possibilité:
+    - ordinateur fixe et écran
+    - ordinateur portable
+    - tablette
+    - smartphone
+    - TV
+    - videoprojecteur
+    - smart TV
+    - moyenne
+  par défaut: "'moyenne'"
+
+streaming . réseau:
+  titre: Type de réseau
+  question: Quel type de réseau utilisez-vous ?
+  avec:
+    fixe:
+      titre: Réseau fixe
+    mobile:
+      titre: Réseau mobile
+  une possibilité:
+    - fixe
+    - mobile
+  par défaut: "'mobile'"
+
+streaming . terminaux:
+  formule:
+    somme:
+      - streaming . terminaux . construction
+      - streaming . terminaux . usage
+  unité: gCO2e
+
+streaming . terminaux . construction:
+  valeur: construction réelle
+  contexte:
+    appareil par défaut: streaming . appareil
+    durée en heure par défaut: streaming . durée en heure
+    moyenne utilisation ordinateur et écran par défaut: streaming . appareil . moyenne utilisation ordinateur fixe et écran
+    moyenne utilisation ordinateur portable par défaut: streaming . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: streaming . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: streaming . appareil . moyenne utilisation smartphone
+    moyenne utilisation TV par défaut: streaming . appareil . moyenne utilisation TV
+    moyenne utilisation videoprojecteur par défaut: streaming . appareil . moyenne utilisation videoprojecteur
+    moyenne utilisation smart TV par défaut: streaming . appareil . moyenne utilisation smart TV
+  unité: gCO2e
+
+streaming . terminaux . usage:
+  valeur: usage réel
+  contexte:
+    appareil par défaut: streaming . appareil
+    durée en heure par défaut: streaming . durée en heure
+    moyenne utilisation ordinateur et écran par défaut: streaming . appareil . moyenne utilisation ordinateur fixe et écran
+    moyenne utilisation ordinateur portable par défaut: streaming . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: streaming . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: streaming . appareil . moyenne utilisation smartphone
+    moyenne utilisation TV par défaut: streaming . appareil . moyenne utilisation TV
+    moyenne utilisation videoprojecteur par défaut: streaming . appareil . moyenne utilisation videoprojecteur
+    moyenne utilisation smart TV par défaut: streaming . appareil . moyenne utilisation smart TV
+  unité: gCO2e
+
+streaming . appareil . moyenne utilisation ordinateur fixe et écran:
+  formule: 0%
+
+streaming . appareil . moyenne utilisation ordinateur portable:
+  formule: 18%
+
+streaming . appareil . moyenne utilisation tablette:
+  formule: 0%
+
+streaming . appareil . moyenne utilisation smartphone:
+  formule: 0%
+
+streaming . appareil . moyenne utilisation TV:
+  formule: 0%
+
+streaming . appareil . moyenne utilisation videoprojecteur:
+  formule: 0%
+
+streaming . appareil . moyenne utilisation smart TV:
+  formule: 82%
+
+streaming . transmission:
+  valeur: transmission par défaut
+  contexte:
+    transmission par défaut . taille par défaut: streaming . taille
+    transmission par défaut . réseau par défaut: streaming . transmission . réseau
+    transmission par défaut . débit: streaming . qualité . débit
+  unité: gCO2e
+
+streaming . transmission . réseau:
+  formule:
+    variations:
+      - si: streaming . réseau = 'fixe'
+        alors: "'fixe'"
+      - si: streaming . réseau = 'mobile'
+        alors: "'mobile'"
+  par défaut: "'mobile'"
+
+streaming . data center:
+  valeur: data center par défaut
+  contexte:
+    data center par défaut . taille par défaut: streaming . taille
+  unité: gCO2e

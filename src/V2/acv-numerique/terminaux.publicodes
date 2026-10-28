@@ -1,0 +1,381 @@
+construction réelle:
+  unité: gCO2e
+  valeur:
+    variations:
+      - si: appareil par défaut = 'smartphone'
+        alors: smartphone
+      - si: appareil par défaut = 'tablette'
+        alors: tablette
+      - si: appareil par défaut = 'ordinateur portable'
+        alors: ordinateur portable
+      - si: appareil par défaut = 'TV'
+        alors: TV
+      - si: appareil par défaut = 'ordinateur et écran'
+        alors: ordinateur et écran
+      - si: appareil par défaut = 'videoprojecteur'
+        alors: videoprojecteur
+      - si: appareil par défaut = 'smart TV'
+        alors: smart TV
+      - si: appareil par défaut = 'moyenne'
+        alors: moyenne
+  meta:
+    reference: |
+      Les données relatives à la construction et l'amortissement des appareils sont tirées du dernier excel Negaoctet disponible dans la Base Impact.
+
+construction réelle . moyenne:
+  valeur:
+    somme:
+      - moyenne utilisation ordinateur et écran par défaut * ordinateur et écran
+      - moyenne utilisation ordinateur portable par défaut * ordinateur portable
+      - moyenne utilisation tablette par défaut * tablette
+      - moyenne utilisation smartphone par défaut * smartphone
+      - moyenne utilisation TV par défaut * TV
+      - moyenne utilisation videoprojecteur par défaut * videoprojecteur
+      - moyenne utilisation smart TV par défaut * smart TV
+
+construction réelle . smartphone:
+  valeur: smartphone . construction * (durée en heure par défaut / smartphone .
+    durée d'usage)
+
+construction réelle . tablette:
+  valeur:
+    tablette . construction * (durée en heure par défaut / tablette . durée
+    d'usage)
+
+construction réelle . ordinateur portable:
+  valeur: ordinateur portable . construction * (durée en heure par défaut /
+    ordinateur portable . durée d'usage)
+
+construction réelle . TV:
+  valeur: TV . construction * (durée en heure par défaut / TV . durée d'usage)
+
+construction réelle . ordinateur et écran:
+  valeur: ordinateur et écran . construction * (durée en heure par défaut /
+    ordinateur et écran . durée d'usage)
+
+construction réelle . videoprojecteur:
+  valeur: videoprojecteur . construction * (durée en heure par défaut /
+    videoprojecteur . durée d'usage)
+
+construction réelle . smart TV:
+  valeur:
+    smart TV . construction * (durée en heure par défaut / smart TV . durée
+    d'usage)
+
+usage réel:
+  unité: gCO2e
+  valeur: consommation électricité * facteur électricité
+
+usage réel . facteur électricité:
+  unité: gCO2e/kWh
+  valeur:
+    variations:
+      - si: région = 'France'
+        alors: électricité . FE France
+      - si: région = 'Europe'
+        alors: électricité . FE Europe
+      - si: région = 'Chine'
+        alors: électricité . FE Chine
+      - si: région = 'USA'
+        alors: électricité . FE USA
+
+usage réel . région:
+  titre: Région d'utilisation du terminal
+  avec:
+    France:
+    Europe:
+    Chine:
+    USA:
+  par défaut: 'France'
+  type:
+    une possibilité:
+      - 'France'
+      - 'Europe'
+      - 'Chine'
+      - 'USA'
+  meta:
+    question: Dans quelle zone géographique est utilisé le terminal ?
+
+usage réel . consommation électricité:
+  unité: kWh
+  valeur: consommation électricité par heure * durée en heure par défaut / 1000 W.h/kWh
+
+usage réel . consommation électricité par heure:
+  unité: W
+  valeur:
+    variations:
+      - si: appareil par défaut = 'smartphone'
+        alors: acv . smartphone . consommation en mode actif
+      - si: appareil par défaut = 'tablette'
+        alors: acv . tablette . consommation en mode actif
+      - si: appareil par défaut = 'ordinateur portable'
+        alors: acv . ordinateur portable . consommation en mode actif
+      - si: appareil par défaut = 'ordinateur et écran'
+        alors: ordinateur et écran . consommation en mode actif
+      - si: appareil par défaut = 'TV'
+        alors: acv . TV . consommation en mode actif
+      - si: appareil par défaut = 'videoprojecteur'
+        alors: acv . videoprojecteur . consommation en mode actif
+      - si: appareil par défaut = 'smart TV'
+        alors: acv . smart TV . consommation en mode actif
+      - sinon: consommation en mode actif moyenne
+
+usage réel . consommation en mode actif moyenne:
+  valeur:
+    somme:
+      - moyenne utilisation ordinateur et écran par défaut * ordinateur et écran
+        . consommation en mode actif
+      - moyenne utilisation ordinateur portable par défaut * acv . ordinateur
+        portable . consommation en mode actif
+      - moyenne utilisation tablette par défaut * acv . tablette . consommation
+        en mode actif
+      - moyenne utilisation smartphone par défaut * acv . smartphone .
+        consommation en mode actif
+      - moyenne utilisation TV par défaut * acv . TV . consommation en mode actif
+      - moyenne utilisation videoprojecteur par défaut * acv . videoprojecteur .
+        consommation en mode actif
+      - moyenne utilisation smart TV par défaut * acv . smart TV . consommation
+        en mode actif
+
+appareil par défaut:
+  par défaut: 'moyenne'
+durée en heure par défaut:
+  par défaut: 0
+  unité: h
+moyenne utilisation ordinateur et écran par défaut:
+  par défaut: 0%
+moyenne utilisation ordinateur portable par défaut:
+  par défaut: 0%
+moyenne utilisation tablette par défaut:
+  par défaut: 0%
+moyenne utilisation smartphone par défaut:
+  par défaut: 0%
+moyenne utilisation TV par défaut:
+  par défaut: 0%
+moyenne utilisation videoprojecteur par défaut:
+  par défaut: 0%
+moyenne utilisation smart TV par défaut:
+  par défaut: 0%
+
+smartphone:
+smartphone . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - acv . smartphone . carbone . fabrication
+      - acv . smartphone . carbone . distribution
+      - acv . smartphone . carbone . fin de vie
+
+smartphone . durée d'usage:
+  unité: h
+  valeur: jours par an * durée de vie * profil utilisation
+
+smartphone . durée de vie:
+  titre: Durée de vie smartphone
+  unité: an
+  par défaut: acv . smartphone . durée de vie théorique
+  meta:
+    question: Quelle est la durée de vie du smartphone ?
+
+smartphone . profil utilisation:
+  titre: Profil d'utilisation smartphone
+  unité: h/jour
+  par défaut: acv . smartphone . profil utilisation théorique
+  meta:
+    question: Quelle est le profil d'utilisation du smartphone ?
+
+tablette:
+tablette . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - acv . tablette . carbone . fabrication
+      - acv . tablette . carbone . distribution
+      - acv . tablette . carbone . fin de vie
+
+tablette . durée d'usage:
+  unité: h
+  valeur: jours par an * durée de vie * profil utilisation
+
+tablette . durée de vie:
+  titre: Durée de vie tablette
+  unité: an
+  par défaut: acv . tablette . durée de vie théorique
+  meta:
+    question: Quelle est la durée de vie de la tablette ?
+
+tablette . profil utilisation:
+  titre: Profil d'utilisation tablette
+  unité: h/jour
+  par défaut: acv . tablette . profil utilisation théorique
+  meta:
+    question: Quelle est le profil d'utilisation de la tablette ?
+
+ordinateur portable:
+ordinateur portable . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - acv . ordinateur portable . carbone . fabrication
+      - acv . ordinateur portable . carbone . distribution
+      - acv . ordinateur portable . carbone . fin de vie
+
+ordinateur portable . durée d'usage:
+  unité: h
+  valeur: jours par an * durée de vie * profil utilisation
+
+ordinateur portable . durée de vie:
+  titre: Durée de vie ordinateur portable
+  unité: an
+  par défaut: acv . ordinateur portable . durée de vie théorique
+  meta:
+    question: Quelle est la durée de vie de l'ordinateur portable ?
+
+ordinateur portable . profil utilisation:
+  titre: Profil d'utilisation ordinateur portable
+  unité: h/jour
+  par défaut: acv . ordinateur portable . profil utilisation théorique
+  meta:
+    question: Quelle est le profil d'utilisation de l'ordinateur portable ?
+
+TV:
+TV . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - acv . TV . carbone . fabrication
+      - acv . TV . carbone . distribution
+      - acv . TV . carbone . fin de vie
+
+TV . durée d'usage:
+  unité: h
+  valeur: jours par an * durée de vie * profil utilisation
+
+TV . durée de vie:
+  titre: Durée de vie TV
+  unité: an
+  par défaut: acv . TV . durée de vie théorique
+  meta:
+    question: Quelle est la durée de vie de la TV ?
+
+TV . profil utilisation:
+  titre: Profil d'utilisation TV
+  unité: h/jour
+  par défaut: acv . TV . profil utilisation théorique
+  meta:
+    question: Quelle est le profil d'utilisation de la TV ?
+
+ordinateur fixe:
+ordinateur fixe . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - acv . ordinateur fixe . carbone . fabrication
+      - acv . ordinateur fixe . carbone . distribution
+      - acv . ordinateur fixe . carbone . fin de vie
+
+écran:
+écran . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - acv . écran . carbone . fabrication
+      - acv . écran . carbone . distribution
+      - acv . écran . carbone . fin de vie
+
+ordinateur et écran:
+ordinateur et écran . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - ordinateur fixe . construction
+      - écran . construction
+
+ordinateur et écran . durée d'usage:
+  unité: h
+  valeur: jours par an * durée de vie * profil utilisation
+
+ordinateur et écran . durée de vie:
+  titre: Durée de vie ordinateur et écran
+  unité: an
+  par défaut:
+    moyenne:
+      - acv . ordinateur fixe . durée de vie théorique
+      - acv . écran . durée de vie théorique
+  meta:
+    question: Quelle est la durée de vie de votre ordinateur et écran ?
+
+ordinateur et écran . profil utilisation:
+  titre: Profil d'utilisation ordinateur et écran
+  unité: h/jour
+  par défaut: ordinateur et écran . profil utilisation théorique
+  meta:
+    question: Quelle est le profil d'utilisation de l'ordinateur et écran ?
+
+ordinateur et écran . profil utilisation théorique:
+  unité: h/jour
+  valeur:
+    moyenne:
+      - acv . ordinateur fixe . profil utilisation théorique
+      - acv . écran . profil utilisation théorique
+
+ordinateur et écran . consommation en mode actif:
+  unité: W
+  valeur:
+    somme:
+      - acv . ordinateur fixe . consommation en mode actif
+      - acv . écran . consommation en mode actif
+
+videoprojecteur:
+videoprojecteur . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - acv . videoprojecteur . carbone . fabrication
+      - acv . videoprojecteur . carbone . distribution
+      - acv . videoprojecteur . carbone . fin de vie
+
+videoprojecteur . durée d'usage:
+  unité: h
+  valeur: jours par an * durée de vie * profil utilisation
+
+videoprojecteur . durée de vie:
+  titre: Durée de vie videoprojecteur
+  unité: an
+  par défaut: acv . videoprojecteur . durée de vie théorique
+  meta:
+    question: Quelle est la durée de vie du videoprojecteur ?
+
+videoprojecteur . profil utilisation:
+  titre: Profil d'utilisation videoprojecteur
+  unité: h/jour
+  par défaut: acv . videoprojecteur . profil utilisation théorique
+  meta:
+    question: Quelle est le profil d'utilisation du videoprojecteur ?
+
+smart TV:
+smart TV . construction:
+  unité: gCO2e
+  valeur:
+    somme:
+      - acv . smart TV . carbone . fabrication
+      - acv . smart TV . carbone . distribution
+      - acv . smart TV . carbone . fin de vie
+
+smart TV . durée d'usage:
+  unité: h
+  valeur: jours par an * durée de vie * profil utilisation
+
+smart TV . durée de vie:
+  titre: Durée de vie smart TV
+  unité: an
+  par défaut: acv . smart TV . durée de vie théorique
+  meta:
+    question: Quelle est la durée de vie de la smart TV ?
+
+smart TV . profil utilisation:
+  titre: Profil d'utilisation smart TV
+  unité: h/jour
+  par défaut: acv . smart TV . profil utilisation théorique
+  meta:
+    question: Quelle est le profil d'utilisation de la smart TV ?

@@ -1,0 +1,25 @@
+importer!:
+  depuis:
+    nom: "@incubateur-ademe/publicodes-commun"
+    url: https://github.com/incubateur-ademe/publicodes-commun
+  les règles:
+    - mix électrique . empreinte carbone
+
+électricité:
+  note: FE issus de l'IEA, correspond à priori au FE de production de mix électrique
+
+électricité . FE France:
+  formule: publicodes-commun . mix électrique . empreinte carbone * 1000 gCO2e/kgCO2e
+  unité: gCO2e/kWh
+
+électricité . FE Europe:
+  formule: 172
+  unité: gCO2e/kWh
+
+électricité . FE Chine:
+  formule: 532
+  unité: gCO2e/kWh
+
+électricité . FE USA:
+  formule: 327
+  unité: gCO2e/kWh
