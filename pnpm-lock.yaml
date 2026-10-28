@@ -4,28 +4,25 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@publicodes/react-ui': ^1.10.0
-
 importers:
 
   .:
     devDependencies:
       '@incubateur-ademe/nosgestesclimat':
-        specifier: ^4.17.0
-        version: 4.17.0(publicodes@1.10.4)
+        specifier: ^4.18.0
+        version: 4.18.0(publicodes@1.10.4)
       '@incubateur-ademe/publicodes-commun':
         specifier: ^2.2.0
         version: 2.2.0(publicodes@1.10.4)
       '@publicodes/cli':
-        specifier: 2.0.0-alpha.2
-        version: 2.0.0-alpha.2
+        specifier: 2.0.0-alpha.5
+        version: 2.0.0-alpha.5
       '@publicodes/codemod':
         specifier: 2.0.0
         version: 2.0.0
       '@publicodes/tools':
         specifier: ^1.10.2
-        version: https://pkg.pr.new/publicodes/publicodes/@publicodes/tools@6b85118(jiti@2.7.0)(lightningcss@1.32.0)(publicodes@1.10.4)
+        version: 1.10.6(jiti@2.7.0)(lightningcss@1.32.0)(publicodes@1.10.4)
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.5
@@ -211,8 +208,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@incubateur-ademe/nosgestesclimat@4.17.0':
-    resolution: {integrity: sha512-JMFxYfrZwiTqClNwVCND70o6nD7QanMgO0C41TYDiW26yEJEXeT+U/2oKIQ81mSVJlDGcs3M8rysJZASX5Icuw==}
+  '@incubateur-ademe/nosgestesclimat@4.18.0':
+    resolution: {integrity: sha512-7pTdrQIIcfrka7K8dgb784EcDW5+GBWSmB+GW8gyNrndvfnDpnPAeZzGlYhvgYlA1Chb2JPaQwXboYV1DGkYfQ==}
     engines: {node: '>=24'}
     peerDependencies:
       publicodes: ^1.8.5
@@ -249,54 +246,53 @@ packages:
     resolution: {integrity: sha512-QCJIZoVJxV7jywgVAUlsQwl3dr3Sa21kfi5z9KrYolbexWJUtFSEtMoNiBWojD05mYycLnB50gp/VxlGdaOCRA==}
     engines: {node: '>=18.0.0'}
 
-  '@publicodes/cli-darwin-arm64@2.0.0-alpha.2':
-    resolution: {integrity: sha512-OGRKBVlEJNoxlRV1jdK9JYdqeHncVn7Re/fqKJDtthZ/77pbW2C2EfRrMKhtW+brqCIhm7mUxFtQbum5Hq9UMw==}
+  '@publicodes/cli-darwin-arm64@2.0.0-alpha.5':
+    resolution: {integrity: sha512-v63HAThWUx3MIb9exgRLS22FuaUTTMmvEv44uoVMgBfK9jZzyih893LahSbJzUTtJwCjoPMbNTkOmjJ5TWBUpg==}
     cpu: [arm64]
     os: [darwin]
     hasBin: true
 
-  '@publicodes/cli-darwin-x64@2.0.0-alpha.2':
-    resolution: {integrity: sha512-PpbH6lUeSStArBT0NZ9uKwIjhsBQNSj1mIWPe7zrl7ZCnxVijhM2B7ZsXRNmpk2X8SZatYTlR8YWXCV+6sDikA==}
+  '@publicodes/cli-darwin-x64@2.0.0-alpha.5':
+    resolution: {integrity: sha512-yrWn6t/VTwm4GVqf6GDZ+oG2fm/XucUZ35RxJwJ7Uvee+kg4rlVXGLfAOLoyJ4EXsASqEju4okmb4O0QkopVug==}
     cpu: [x64]
     os: [darwin]
     hasBin: true
 
-  '@publicodes/cli-linux-arm64@2.0.0-alpha.2':
-    resolution: {integrity: sha512-dwf+bFqHHV6J5PzUcUzOLLdB8SCo+tcATCG1G/znhMgnRBaFh0BQOtD3aXRaluYNBYUNmjeXd2AKGu5VR4mzYA==}
+  '@publicodes/cli-linux-arm64@2.0.0-alpha.5':
+    resolution: {integrity: sha512-UzDGVH072aJpzlVjspKuL0VN3BnvR57HchF/TASJboJbnLceuXzcHOjWFkXEiddCS8+YWL921pcsKlufdbhPJg==}
     cpu: [arm64]
     os: [linux]
     hasBin: true
 
-  '@publicodes/cli-linux-x64@2.0.0-alpha.2':
-    resolution: {integrity: sha512-49iApJYfeGIN9Aub+A+P8mWMn4RleYI74zbiCR3eJLJL597zmDsGD4O8qBsLfOaqnemp376P6kik7DAsR77OAA==}
+  '@publicodes/cli-linux-x64@2.0.0-alpha.5':
+    resolution: {integrity: sha512-zkYRrKo9fDG0DHypnIEVECk8LjVF6/gXciP0PDFSWLp9IGz5ZxvKY9A2208lj7TrGol+nplJGuC4iyEksvjaQA==}
     cpu: [x64]
     os: [linux]
     hasBin: true
 
-  '@publicodes/cli-win32-x64@2.0.0-alpha.2':
-    resolution: {integrity: sha512-XiFvtxBI5spH1pKM4xs4GScoGNlzodC5VoJ+7aCYba+ia3yqD3TxsrBY9z4u7uoMWd0ClzwiC7WNsPBX+7pqdw==}
+  '@publicodes/cli-win32-x64@2.0.0-alpha.5':
+    resolution: {integrity: sha512-d6goNnZb/j1Jhc5qyhKVumjF6vP+po4WZg3D3Hbq8LXQJiqskvYmI4EwHYzzDQCaAR4Y13Zx6CXjxxQ5rNdeJg==}
     cpu: [x64]
     os: [win32]
     hasBin: true
 
-  '@publicodes/cli@2.0.0-alpha.2':
-    resolution: {integrity: sha512-i4gsXkkU5+gdap5Kt8H+8xm45e6iY2f8fvtR0DHtbBzAd840x9rmA2SiqIqr4aKNjoVFeLnAAGQ0ql6+DX4FXg==}
+  '@publicodes/cli@2.0.0-alpha.5':
+    resolution: {integrity: sha512-LI5uwbayOR0VIoxrzD/IcyeeMXn0TGSqxE6CjVqEI8Jql9L5D5xTBXz7YsefAns/BDr/VkxTya+rxymC4OicEw==}
 
   '@publicodes/codemod@2.0.0':
     resolution: {integrity: sha512-ww1RfTJK5nX4D56Y6m5aezr6CtiNefIlB/1uvZigB6oSqynaQvM4TbYm0qWXjF89Oxxspv59HWsTA3/kj6ISHw==}
     engines: {node: '>=22.0.0'}
     hasBin: true
 
-  '@publicodes/react-ui@1.10.0':
-    resolution: {integrity: sha512-ppo6WU0uBMlImxqaKVrL3+CsdbKUiBCzv3vMxn2p2KLutAxMMic6HunLS+e1afTMpQSH0JSxrzpkUiqgzzbrxw==}
+  '@publicodes/react-ui@1.10.4':
+    resolution: {integrity: sha512-RtpcQZfjkWzWLvxi635mSw/2dOQCWAI7tcnZYY+BCoglGFIe0goT4Y3tzVBklIoy7jQLTAJd+h+ynDikO2HGRg==}
     peerDependencies:
       publicodes: ^1.5.3
       react: "^18 ||\_^19"
       react-dom: "^18 ||\_^19"
 
-  '@publicodes/tools@https://pkg.pr.new/publicodes/publicodes/@publicodes/tools@6b85118':
-    resolution: {integrity: sha512-OjLMUUUUYYwa1g/S6wz7l2uRDKVgWXmkjsz1RWqK/+pOQ4HJ+K5blg8yRDz3f4iblTdA622DtdeEkbywrU+gDQ==, tarball: https://pkg.pr.new/publicodes/publicodes/@publicodes/tools@6b85118}
-    version: 1.10.2
+  '@publicodes/tools@1.10.6':
+    resolution: {integrity: sha512-j2u3khLjZljH2NdprwPM/5MoTW6jMtZOrcGeLuZw9tvwmaw2vcoeyOF2EeG3HAEp3qepGkerLJYMRBwEF+Y+pA==}
     engines: {node: '>=22'}
     hasBin: true
     peerDependencies:
@@ -576,6 +572,9 @@ packages:
     resolution: {integrity: sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==}
     engines: {node: 20 || >=22}
 
+  camelize@1.0.1:
+    resolution: {integrity: sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==}
+
   chalk@5.6.2:
     resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
@@ -602,6 +601,13 @@ packages:
   cookie@1.1.1:
     resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
     engines: {node: '>=18'}
+
+  css-color-keywords@1.0.0:
+    resolution: {integrity: sha512-FyyrDHZKEjXDpNJYvVsV960FiqQyXc/LlYmsxl2BcdMb2WPx0OGRVgTg55rPSyLSNMqP52R9r8geSp7apN3Ofg==}
+    engines: {node: '>=4'}
+
+  css-to-react-native@3.2.0:
+    resolution: {integrity: sha512-e8RKaLXMOFii+02mOlqwjbD00KSEKqblnpO9e++1aXS1fPQOpS1YoqdVHBqPjHNoxeF2mimzVqawm2KCbEdtHQ==}
 
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -844,6 +850,9 @@ packages:
   postcss-selector-parser@6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
     engines: {node: '>=4'}
+
+  postcss-value-parser@4.2.0:
+    resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
   postcss@8.5.28:
     resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
@@ -1129,7 +1138,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.12':
     optional: true
 
-  '@incubateur-ademe/nosgestesclimat@4.17.0(publicodes@1.10.4)':
+  '@incubateur-ademe/nosgestesclimat@4.18.0(publicodes@1.10.4)':
     dependencies:
       publicodes: 1.10.4
 
@@ -1180,34 +1189,34 @@ snapshots:
       wrap-ansi: 7.0.0
       wsl-utils: 0.4.0
 
-  '@publicodes/cli-darwin-arm64@2.0.0-alpha.2':
+  '@publicodes/cli-darwin-arm64@2.0.0-alpha.5':
     optional: true
 
-  '@publicodes/cli-darwin-x64@2.0.0-alpha.2':
+  '@publicodes/cli-darwin-x64@2.0.0-alpha.5':
     optional: true
 
-  '@publicodes/cli-linux-arm64@2.0.0-alpha.2':
+  '@publicodes/cli-linux-arm64@2.0.0-alpha.5':
     optional: true
 
-  '@publicodes/cli-linux-x64@2.0.0-alpha.2':
+  '@publicodes/cli-linux-x64@2.0.0-alpha.5':
     optional: true
 
-  '@publicodes/cli-win32-x64@2.0.0-alpha.2':
+  '@publicodes/cli-win32-x64@2.0.0-alpha.5':
     optional: true
 
-  '@publicodes/cli@2.0.0-alpha.2':
+  '@publicodes/cli@2.0.0-alpha.5':
     optionalDependencies:
-      '@publicodes/cli-darwin-arm64': 2.0.0-alpha.2
-      '@publicodes/cli-darwin-x64': 2.0.0-alpha.2
-      '@publicodes/cli-linux-arm64': 2.0.0-alpha.2
-      '@publicodes/cli-linux-x64': 2.0.0-alpha.2
-      '@publicodes/cli-win32-x64': 2.0.0-alpha.2
+      '@publicodes/cli-darwin-arm64': 2.0.0-alpha.5
+      '@publicodes/cli-darwin-x64': 2.0.0-alpha.5
+      '@publicodes/cli-linux-arm64': 2.0.0-alpha.5
+      '@publicodes/cli-linux-x64': 2.0.0-alpha.5
+      '@publicodes/cli-win32-x64': 2.0.0-alpha.5
 
   '@publicodes/codemod@2.0.0':
     dependencies:
       yaml: 2.9.1
 
-  '@publicodes/react-ui@1.10.0(publicodes@1.10.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@publicodes/react-ui@1.10.4(publicodes@1.10.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       fuse.js: 7.5.0
       publicodes: 1.10.4
@@ -1215,14 +1224,13 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       styled-components: 6.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
-      - css-to-react-native
       - react-native
 
-  '@publicodes/tools@https://pkg.pr.new/publicodes/publicodes/@publicodes/tools@6b85118(jiti@2.7.0)(lightningcss@1.32.0)(publicodes@1.10.4)':
+  '@publicodes/tools@1.10.6(jiti@2.7.0)(lightningcss@1.32.0)(publicodes@1.10.4)':
     dependencies:
       '@clack/prompts': 1.8.1
       '@oclif/core': 4.14.0
-      '@publicodes/react-ui': 1.10.0(publicodes@1.10.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@publicodes/react-ui': 1.10.4(publicodes@1.10.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tailwindcss/typography': 0.5.20(tailwindcss@4.3.3)
       '@tailwindcss/vite': 4.3.3(vite@6.4.2(@types/node@25.9.8)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.1))
       '@types/node': 25.9.8
@@ -1236,10 +1244,9 @@ snapshots:
       react-router-dom: 7.18.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       styled-components: 6.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tailwindcss: 4.3.3
-      vite: 6.4.2(@types/node@26.6.5)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.1)
+      vite: 6.4.2(@types/node@25.9.8)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.1)
       yaml: 2.9.1
     transitivePeerDependencies:
-      - css-to-react-native
       - jiti
       - less
       - lightningcss
@@ -1397,7 +1404,7 @@ snapshots:
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
       tailwindcss: 4.3.3
-      vite: 6.4.2(@types/node@26.6.5)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.1)
+      vite: 6.4.2(@types/node@25.9.8)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.1)
 
   '@types/estree@1.0.9': {}
 
@@ -1429,6 +1436,8 @@ snapshots:
     dependencies:
       balanced-match: 4.0.4
 
+  camelize@1.0.1: {}
+
   chalk@5.6.2: {}
 
   chokidar@5.0.0:
@@ -1448,6 +1457,14 @@ snapshots:
   color-name@1.1.4: {}
 
   cookie@1.1.1: {}
+
+  css-color-keywords@1.0.0: {}
+
+  css-to-react-native@3.2.0:
+    dependencies:
+      camelize: 1.0.1
+      css-color-keywords: 1.0.0
+      postcss-value-parser: 4.2.0
 
   cssesc@3.0.0: {}
 
@@ -1644,6 +1661,8 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
+  postcss-value-parser@4.2.0: {}
+
   postcss@8.5.28:
     dependencies:
       nanoid: 3.3.19
@@ -1739,6 +1758,7 @@ snapshots:
   styled-components@6.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
+      css-to-react-native: 3.2.0
       csstype: 3.2.3
       react: 18.3.1
       stylis: 4.3.6
@@ -1772,7 +1792,7 @@ snapshots:
     dependencies:
       inherits: 2.0.3
 
-  vite@6.4.2(@types/node@26.6.5)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.1):
+  vite@6.4.2(@types/node@25.9.8)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.1):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.7)
@@ -1781,7 +1801,7 @@ snapshots:
       rollup: 4.63.5
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 26.6.5
+      '@types/node': 25.9.8
       fsevents: 2.3.3
       jiti: 2.7.0
       lightningcss: 1.32.0

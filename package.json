@@ -20,9 +20,9 @@
     "publicodes": "^1.10.4"
   },
   "devDependencies": {
-    "@incubateur-ademe/nosgestesclimat": "^4.17.0",
+    "@incubateur-ademe/nosgestesclimat": "^4.18.0",
     "@incubateur-ademe/publicodes-commun": "^2.2.0",
-    "@publicodes/cli": "2.0.0-alpha.2",
+    "@publicodes/cli": "2.0.0-alpha.5",
     "@publicodes/codemod": "2.0.0",
     "@publicodes/tools": "^1.10.2",
     "@types/node": "^26.6.4",
@@ -32,10 +32,5 @@
   },
   "resolutions": {
     "@publicodes/react-ui": "^1.10.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@publicodes/cli"
-    ]
   }
 }
