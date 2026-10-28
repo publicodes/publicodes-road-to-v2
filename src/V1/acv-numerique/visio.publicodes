@@ -1,0 +1,165 @@
+visio:
+  formule:
+    variations:
+      - si: visio . durée > 0 minute
+        alors:
+          somme:
+            - visio . terminaux
+            - visio . transmission
+            - visio . data center
+      - sinon: 0 gCO2e
+  unité: gCO2e
+
+visio . qualité:
+  titre: Qualité de la vidéo
+  question: Quelle est la qualité de la vidéo ?
+  avec:
+    audio:
+      titre: Audio uniquement
+    SD:
+      titre: SD
+    HD:
+      titre: HD
+    ultra HD:
+      titre: 4K
+  une possibilité:
+    - audio
+    - SD
+    - HD
+    - ultra HD
+  par défaut: "'HD'"
+
+visio . qualité . débit:
+  formule:
+    variations:
+      - si: visio . qualité = 'audio'
+        alors: 0.1640625 Go/h
+      - si: visio . qualité = 'SD'
+        alors: 0.7 Go/h
+      - si: visio . qualité = 'HD'
+        alors: 3 Go/h
+      - si: visio . qualité = 'ultra HD'
+        alors: 7 Go/h
+  unité: Go/h
+
+visio . durée:
+  titre: Temps de la visioconférence
+  question: Quelle est la durée de la visioconférence ?
+  par défaut: 60
+  unité: minute
+
+visio . durée en heure:
+  formule: visio . durée / 60 minute/h
+  unité: h
+
+visio . taille:
+  titre: Volume de données transmis
+  formule: visio . durée en heure * visio . qualité . débit
+  unité: Go
+
+visio . emplacements:
+  titre: Nombre d'appareils connectés
+  question: Combien d'appareils sont connectés à la visioconférence ?
+  par défaut: 2
+
+visio . appareil . durée totale sollicitation:
+  formule: visio . emplacements * visio . durée en heure
+  unité: h
+
+visio . terminaux:
+  formule:
+    somme:
+      - visio . terminaux . construction
+      - visio . terminaux . usage
+  unité: gCO2e
+
+visio . appareil:
+  titre: Appareil utilisé
+  question: Quel appareil utilisez-vous ?
+  avec:
+    ordinateur et écran:
+      titre: Ordinateur fixe et écran
+    ordinateur portable:
+      titre: Ordinateur portable
+    tablette:
+      titre: Tablette
+    smartphone:
+      titre: Smartphone
+    TV:
+      titre: Téléviseur
+    moyenne:
+      titre: Mix moyen d'appareils
+  une possibilité:
+    - ordinateur et écran
+    - ordinateur portable
+    - tablette
+    - smartphone
+    - TV
+    - moyenne
+  par défaut: "'moyenne'"
+
+visio . appareil . moyenne utilisation ordinateur et écran:
+  formule: 0%
+
+visio . appareil . moyenne utilisation ordinateur portable:
+  formule: 100%
+
+visio . appareil . moyenne utilisation tablette:
+  formule: 0%
+
+visio . appareil . moyenne utilisation smartphone:
+  formule: 0%
+
+visio . appareil . moyenne utilisation TV:
+  formule: 0%
+
+visio . terminaux . construction:
+  valeur: construction réelle
+  contexte:
+    appareil par défaut: visio . appareil
+    durée en heure par défaut: visio . appareil . durée totale sollicitation
+    moyenne utilisation ordinateur et écran par défaut: visio . appareil . moyenne utilisation ordinateur et écran
+    moyenne utilisation ordinateur portable par défaut: visio . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: visio . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: visio . appareil . moyenne utilisation smartphone
+    moyenne utilisation TV par défaut: visio . appareil . moyenne utilisation TV
+  unité: gCO2e
+
+visio . terminaux . usage:
+  valeur: usage réel
+  contexte:
+    appareil par défaut: visio . appareil
+    durée en heure par défaut: visio . appareil . durée totale sollicitation
+    moyenne utilisation ordinateur et écran par défaut: visio . appareil . moyenne utilisation ordinateur et écran
+    moyenne utilisation ordinateur portable par défaut: visio . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: visio . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: visio . appareil . moyenne utilisation smartphone
+    moyenne utilisation TV par défaut: visio . appareil . moyenne utilisation TV
+  unité: gCO2e
+
+visio . réseau:
+  titre: Type de réseau utilisé
+  question: Utilisez-vous le réseau fixe ou mobile ?
+  avec:
+    fixe:
+      titre: Réseau fixe
+    mobile:
+      titre: Réseau mobile
+  une possibilité:
+    - fixe
+    - mobile
+  par défaut: "'mobile'"
+
+visio . transmission:
+  valeur: transmission par défaut
+  contexte:
+    transmission par défaut . taille par défaut: visio . emplacements * visio . taille
+    transmission par défaut . réseau par défaut: visio . réseau
+    transmission par défaut . débit: visio . qualité . débit
+  unité: gCO2e
+
+visio . data center:
+  valeur: data center par défaut
+  contexte:
+    data center par défaut . taille par défaut: visio . emplacements * visio . taille
+  unité: gCO2e

@@ -1,0 +1,206 @@
+email:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - email . taille > 0 Mo
+            - email . destinataires > 0
+        alors:
+          somme:
+            - email . terminaux
+            - email . transmission
+            - email . data center
+      - sinon: 0 gCO2e
+  unité: gCO2e
+
+email . taille:
+  titre: Taille du mail
+  question: Quelle est la taille du mail en Mo ?
+  par défaut: 1
+  unité: Mo
+
+email . taille en Go:
+  formule: email . taille / 1000 Mo/Go
+  unité: Go
+
+email . destinataires:
+  titre: Nombre de destinataires
+  question: Quel est le nombre de destinataires ?
+  par défaut: 50
+
+email . durée stockage émetteur:
+  titre: Durée de stockage côté émetteur
+  valeur: 10
+  unité: an
+  note: Hypothèse raisonnable ADEME, configurateur Mail.
+
+email . durée stockage récepteur:
+  titre: Durée de stockage côté récepteur
+  valeur: 10
+  unité: an
+  note: Hypothèse raisonnable ADEME, configurateur Mail.
+
+# email . redondances sauvegarde émetteur:
+#   titre: Nombre de redondances de sauvegarde côté émetteur
+#   valeur: 3
+
+# email . redondances sauvegarde récepteur:
+#   titre: Nombre de redondances de sauvegarde côté récepteur
+#   valeur: 3
+
+email . taux moyen de remplissage du stockage:
+  titre: Taux moyen de remplissage du stockage
+  valeur: 50%
+
+email . nombre de mails envoyés et reçus par jour et par personne:
+  titre: Nombre de mails envoyés et reçus par jour et par personne
+  valeur: 117.7 /jour
+
+email . terminaux:
+  formule:
+    somme:
+      - construction
+      - usage
+  unité: gCO2e
+
+email . appareil:
+  titre: Appareil utilisé
+  question: Quel appareil utilisez-vous ?
+  avec:
+    ordinateur et écran:
+      titre: Ordinateur fixe et écran
+    ordinateur portable:
+      titre: Ordinateur portable
+    tablette:
+      titre: Tablette
+    smartphone:
+      titre: Smartphone
+    moyenne:
+      titre: Mix moyen d'appareils
+  une possibilité:
+    - ordinateur et écran
+    - ordinateur portable
+    - tablette
+    - smartphone
+    - moyenne
+  par défaut: "'moyenne'"
+
+email . appareil . moyenne utilisation ordinateur et écran:
+  formule: 24%
+
+email . appareil . moyenne utilisation ordinateur portable:
+  formule: 24%
+
+email . appareil . moyenne utilisation tablette:
+  formule: 8%
+
+email . appareil . moyenne utilisation smartphone:
+  formule: 45%
+
+email . appareil . durée totale sollicitation:
+  formule: email . terminaux . temps écriture en h + email . terminaux . temps lecture en h
+  unité: h
+
+email . terminaux . temps écriture:
+  titre: Temps d'écriture du mail
+  question: Quel est le temps d'écriture du mail ?
+  par défaut: 3
+  unité: minute
+
+email . terminaux . temps écriture en h:
+  formule: email . terminaux . temps écriture / 60 minute/h
+  unité: h
+
+email . terminaux . temps lecture récepteur:
+  titre: Temps de lecture du mail
+  question: Quel est le temps de lecture du mail ?
+  par défaut: 0.17 minute
+  unité: minute
+
+email . terminaux . temps lecture total:
+  formule: email . destinataires * email . terminaux . temps lecture récepteur
+  unité: minute
+
+email . terminaux . temps lecture en h:
+  formule: email . terminaux . temps lecture total / 60 minute/h
+  unité: h
+
+email . terminaux . construction:
+  valeur: construction réelle
+  contexte:
+    appareil par défaut: email . appareil
+    durée en heure par défaut: email . appareil . durée totale sollicitation
+    moyenne utilisation ordinateur et écran par défaut: email . appareil . moyenne utilisation ordinateur et écran
+    moyenne utilisation ordinateur portable par défaut: email . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: email . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: email . appareil . moyenne utilisation smartphone
+  unité: gCO2e
+
+email . terminaux . usage:
+  valeur: usage réel
+  contexte:
+    appareil par défaut: email . appareil
+    durée en heure par défaut: email . appareil . durée totale sollicitation
+    moyenne utilisation ordinateur et écran par défaut: email . appareil . moyenne utilisation ordinateur et écran
+    moyenne utilisation ordinateur portable par défaut: email . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: email . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: email . appareil . moyenne utilisation smartphone
+  unité: gCO2e
+
+email . réseau:
+  titre: Type de réseau utilisé
+  question: Quel réseau utilisez-vous ?
+  avec:
+    fixe:
+      titre: Réseau fixe
+    mobile:
+      titre: Réseau mobile
+  une possibilité:
+    - fixe
+    - mobile
+  par défaut: "'mobile'"
+
+email . transmission:
+  formule:
+    somme:
+      - email . transmission . émetteur
+      - email . transmission . récepteur
+  unité: gCO2e
+
+email . transmission . émetteur:
+  valeur: transmission par défaut
+  contexte:
+    transmission par défaut . taille par défaut: email . taille en Go * email . destinataires
+    transmission par défaut . réseau par défaut: email . réseau
+  unité: gCO2e
+
+email . transmission . récepteur:
+  valeur: transmission par défaut
+  contexte:
+    transmission par défaut . taille par défaut: email . destinataires * email . taille en Go
+    transmission par défaut . réseau par défaut: email . réseau
+  unité: gCO2e
+
+# email . transmission . redondances sauvegarde:
+#   formule: email . destinataires * email . taille en Go * email . transmission . redondances sauvegarde . facteur réseau * (1 + email . redondances sauvegarde émetteur + email . redondances sauvegarde récepteur)
+#   unité: gCO2e
+#   note: Calcul des redondances appliqué aux copies émetteur et récepteur.
+
+email . data center:
+  formule:
+    somme:
+      - email . data center . émetteur
+      - email . data center . récepteur
+  unité: gCO2e
+
+email . data center . émetteur:
+  valeur: data center par défaut
+  contexte:
+    data center par défaut . taille par défaut: email . destinataires * email . taille en Go
+  unité: gCO2e
+
+email . data center . récepteur:
+  valeur: data center par défaut
+  contexte:
+    data center par défaut . taille par défaut: email . destinataires * email . taille en Go
+  unité: gCO2e

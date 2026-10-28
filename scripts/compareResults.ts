@@ -19,13 +19,13 @@
 
 import LegacyEngine, { serializeUnit } from 'publicodes';
 
-import v1Rules from '../src/V1/ekofest/publicodes-build/publicodes-road-to-v2.model.json' with { type: 'json' };
-import v1Situations from '../src/V1/ekofest/situations.ts';
-import rules from '../src/V2/ekofest/model.publicodes.js';
+import v1Rules from '../src/V1/acv-numerique/publicodes-build/publicodes-road-to-v2.model.json' with { type: 'json' };
+import v1Situations from '../src/V1/acv-numerique/situations.ts';
+import rules from '../src/V2/acv-numerique/model.publicodes.js';
 import situations, {
   referenceRule,
   type Situation,
-} from '../src/V2/ekofest/situations.ts';
+} from '../src/V2/acv-numerique/situations.ts';
 import {
   type ComparedValue,
   type Divergence,

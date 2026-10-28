@@ -1,0 +1,93 @@
+data center par défaut:
+  unité: gCO2e
+  valeur:
+    somme:
+      - data center origine en propre France * (1 - part cloud)
+      - data center origine en cloud dont étranger * part cloud
+      - cdn
+
+data center par défaut . part cloud:
+  valeur: 75%
+
+data center par défaut . taille par défaut:
+  unité: Go
+  valeur: 50 Mo / 1000 Mo/Go
+
+data center par défaut . data center origine en propre France:
+  unité: gCO2e
+  valeur:
+    somme:
+      - construction
+      - transport
+      - usage
+      - fin de vie
+
+data center par défaut . data center origine en propre France . construction:
+  unité: gCO2e
+  valeur: 0.11685
+
+data center par défaut . data center origine en propre France . transport:
+  unité: gCO2e
+  valeur: 0.00564
+
+data center par défaut . data center origine en propre France . usage:
+  unité: gCO2e
+  valeur: 0.04547
+
+data center par défaut . data center origine en propre France . fin de vie:
+  unité: gCO2e
+  valeur: 0.00420
+
+data center par défaut . data center origine en cloud dont étranger:
+  unité: gCO2e
+  valeur:
+    somme:
+      - construction
+      - transport
+      - usage
+      - fin de vie
+
+data center par défaut . data center origine en cloud dont étranger . construction:
+  unité: gCO2e
+  valeur: 0.11685
+
+data center par défaut . data center origine en cloud dont étranger . transport:
+  unité: gCO2e
+  valeur: 0.00564
+
+data center par défaut . data center origine en cloud dont étranger . usage:
+  unité: gCO2e
+  valeur: 0.24121
+
+data center par défaut . data center origine en cloud dont étranger . fin de vie:
+  unité: gCO2e
+  valeur: 0.00420
+
+data center par défaut . cdn:
+  unité: gCO2e
+  valeur:
+    produit:
+      - somme:
+          - construction
+          - transport
+          - usage
+          - fin de vie
+      - taille par défaut
+
+data center par défaut . cdn . construction:
+  unité: gCO2e/Go
+  valeur: 0.56529
+
+data center par défaut . cdn . transport:
+  unité: gCO2e/Go
+  valeur: 0.01065
+
+data center par défaut . cdn . usage:
+  unité: gCO2e/Go
+  valeur: 0.02888
+
+data center par défaut . cdn . fin de vie:
+  unité: gCO2e/Go
+  valeur: 0.00809
+
+data center par défaut . nombre de serveur: 0
