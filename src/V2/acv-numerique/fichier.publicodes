@@ -1,0 +1,117 @@
+fichier:
+  unité: gCO2e
+  valeur:
+    variations:
+      - si: fichier . taille > 0 Go
+        alors:
+          somme:
+            - fichier . terminaux
+            - fichier . transmission
+            - fichier . data center
+      - sinon: 0 gCO2e
+
+fichier . taille:
+  titre: Taille du fichier
+  par défaut: 1
+  unité: Go
+  meta:
+    question: Quelle est la taille du fichier en Go ?
+
+fichier . appareil:
+  titre: Appareil utilisé
+  avec:
+    ordinateur et écran:
+      titre: Ordinateur fixe et écran
+    ordinateur portable:
+      titre: Ordinateur portable
+    tablette:
+      titre: Tablette
+    smartphone:
+      titre: Smartphone
+    moyenne:
+      titre: Mix moyen d'appareils
+  par défaut: 'moyenne'
+  type:
+    une possibilité:
+      - 'ordinateur et écran'
+      - 'ordinateur portable'
+      - 'tablette'
+      - 'smartphone'
+      - 'moyenne'
+  meta:
+    question: Quel appareil utilisez-vous ?
+
+fichier . appareil . moyenne utilisation ordinateur et écran:
+  valeur: 24%
+
+fichier . appareil . moyenne utilisation ordinateur portable:
+  valeur: 24%
+
+fichier . appareil . moyenne utilisation tablette:
+  valeur: 8%
+
+fichier . appareil . moyenne utilisation smartphone:
+  valeur: 45%
+
+fichier . réseau:
+  titre: Type de réseau utilisé
+  avec:
+    fixe:
+      titre: Réseau fixe
+    mobile:
+      titre: Réseau mobile
+  par défaut: 'mobile'
+  type:
+    une possibilité:
+      - 'fixe'
+      - 'mobile'
+  meta:
+    question: Utilisez-vous le réseau fixe ou mobile ?
+
+fichier . appareil . durée totale sollicitation:
+  contexte:
+    transmission par défaut . réseau par défaut: fichier . réseau
+  unité: h
+  valeur: taille / transmission par défaut . débit
+
+fichier . terminaux:
+  unité: gCO2e
+  valeur:
+    somme:
+      - construction
+      - usage
+
+fichier . terminaux . construction:
+  valeur: construction réelle
+  contexte:
+    appareil par défaut: fichier . appareil
+    durée en heure par défaut: fichier . appareil . durée totale sollicitation
+    moyenne utilisation ordinateur et écran par défaut: fichier . appareil . moyenne utilisation ordinateur et écran
+    moyenne utilisation ordinateur portable par défaut: fichier . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: fichier . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: fichier . appareil . moyenne utilisation smartphone
+  unité: gCO2e
+
+fichier . terminaux . usage:
+  valeur: usage réel
+  contexte:
+    appareil par défaut: fichier . appareil
+    durée en heure par défaut: fichier . appareil . durée totale sollicitation
+    moyenne utilisation ordinateur et écran par défaut: fichier . appareil . moyenne utilisation ordinateur et écran
+    moyenne utilisation ordinateur portable par défaut: fichier . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: fichier . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: fichier . appareil . moyenne utilisation smartphone
+  unité: gCO2e
+
+fichier . transmission:
+  valeur: transmission par défaut
+  contexte:
+    transmission par défaut . taille par défaut: fichier . taille
+    transmission par défaut . réseau par défaut: fichier . réseau
+  unité: gCO2e
+
+fichier . data center:
+  valeur: data center par défaut
+  contexte:
+    data center par défaut . taille par défaut: fichier . taille
+  unité: gCO2e

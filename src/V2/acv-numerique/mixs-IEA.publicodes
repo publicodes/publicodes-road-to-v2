@@ -1,0 +1,25 @@
+commun:
+  importer: commun
+
+jours par an:
+  valeur: 365
+  unité: jour/an
+
+électricité:
+  note: FE issus de l'IEA, correspond à priori au FE de production de mix électrique
+
+électricité . FE France:
+  unité: gCO2e/kWh
+  valeur: commun . mix électrique . empreinte carbone * 1000 gCO2e/kgCO2e
+
+électricité . FE Europe:
+  unité: gCO2e/kWh
+  valeur: 172
+
+électricité . FE Chine:
+  unité: gCO2e/kWh
+  valeur: 532
+
+électricité . FE USA:
+  unité: gCO2e/kWh
+  valeur: 327

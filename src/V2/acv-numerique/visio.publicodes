@@ -1,0 +1,173 @@
+visio:
+  unité: gCO2e
+  valeur:
+    variations:
+      - si: visio . durée > 0 minute
+        alors:
+          somme:
+            - visio . terminaux
+            - visio . transmission
+            - visio . data center
+      - sinon: 0 gCO2e
+
+visio . qualité:
+  titre: Qualité de la vidéo
+  avec:
+    audio:
+      titre: Audio uniquement
+    SD:
+      titre: SD
+    HD:
+      titre: HD
+    ultra HD:
+      titre: 4K
+  par défaut: 'HD'
+  type:
+    une possibilité:
+      - 'audio'
+      - 'SD'
+      - 'HD'
+      - 'ultra HD'
+  meta:
+    question: Quelle est la qualité de la vidéo ?
+
+visio . qualité . débit:
+  unité: Go/h
+  valeur:
+    variations:
+      - si: visio . qualité = 'audio'
+        alors: 0.1640625 Go/h
+      - si: visio . qualité = 'SD'
+        alors: 0.7 Go/h
+      - si: visio . qualité = 'HD'
+        alors: 3 Go/h
+      - si: visio . qualité = 'ultra HD'
+        alors: 7 Go/h
+
+visio . durée:
+  titre: Temps de la visioconférence
+  par défaut: 60
+  unité: minute
+  meta:
+    question: Quelle est la durée de la visioconférence ?
+
+visio . durée en heure:
+  unité: h
+  valeur: visio . durée / 60 minute/h
+
+visio . taille:
+  titre: Volume de données transmis
+  unité: Go
+  valeur: visio . durée en heure * visio . qualité . débit
+
+visio . emplacements:
+  titre: Nombre d'appareils connectés
+  par défaut: 2
+  meta:
+    question: Combien d'appareils sont connectés à la visioconférence ?
+
+visio . appareil . durée totale sollicitation:
+  unité: h
+  valeur: visio . emplacements * visio . durée en heure
+
+visio . terminaux:
+  unité: gCO2e
+  valeur:
+    somme:
+      - visio . terminaux . construction
+      - visio . terminaux . usage
+
+visio . appareil:
+  titre: Appareil utilisé
+  avec:
+    ordinateur et écran:
+      titre: Ordinateur fixe et écran
+    ordinateur portable:
+      titre: Ordinateur portable
+    tablette:
+      titre: Tablette
+    smartphone:
+      titre: Smartphone
+    TV:
+      titre: Téléviseur
+    moyenne:
+      titre: Mix moyen d'appareils
+  par défaut: 'moyenne'
+  type:
+    une possibilité:
+      - 'ordinateur et écran'
+      - 'ordinateur portable'
+      - 'tablette'
+      - 'smartphone'
+      - 'TV'
+      - 'moyenne'
+  meta:
+    question: Quel appareil utilisez-vous ?
+
+visio . appareil . moyenne utilisation ordinateur et écran:
+  valeur: 0%
+
+visio . appareil . moyenne utilisation ordinateur portable:
+  valeur: 100%
+
+visio . appareil . moyenne utilisation tablette:
+  valeur: 0%
+
+visio . appareil . moyenne utilisation smartphone:
+  valeur: 0%
+
+visio . appareil . moyenne utilisation TV:
+  valeur: 0%
+
+visio . terminaux . construction:
+  valeur: construction réelle
+  contexte:
+    appareil par défaut: visio . appareil
+    durée en heure par défaut: visio . appareil . durée totale sollicitation
+    moyenne utilisation ordinateur et écran par défaut: visio . appareil . moyenne utilisation ordinateur et écran
+    moyenne utilisation ordinateur portable par défaut: visio . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: visio . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: visio . appareil . moyenne utilisation smartphone
+    moyenne utilisation TV par défaut: visio . appareil . moyenne utilisation TV
+  unité: gCO2e
+
+visio . terminaux . usage:
+  valeur: usage réel
+  contexte:
+    appareil par défaut: visio . appareil
+    durée en heure par défaut: visio . appareil . durée totale sollicitation
+    moyenne utilisation ordinateur et écran par défaut: visio . appareil . moyenne utilisation ordinateur et écran
+    moyenne utilisation ordinateur portable par défaut: visio . appareil . moyenne utilisation ordinateur portable
+    moyenne utilisation tablette par défaut: visio . appareil . moyenne utilisation tablette
+    moyenne utilisation smartphone par défaut: visio . appareil . moyenne utilisation smartphone
+    moyenne utilisation TV par défaut: visio . appareil . moyenne utilisation TV
+  unité: gCO2e
+
+visio . réseau:
+  titre: Type de réseau utilisé
+  avec:
+    fixe:
+      titre: Réseau fixe
+    mobile:
+      titre: Réseau mobile
+  par défaut: 'mobile'
+  type:
+    une possibilité:
+      - 'fixe'
+      - 'mobile'
+  meta:
+    question: Utilisez-vous le réseau fixe ou mobile ?
+
+visio . transmission:
+  valeur: transmission par défaut
+  contexte:
+    transmission par défaut . taille par défaut: visio . emplacements * visio . taille
+    transmission par défaut . réseau par défaut: visio . réseau
+    transmission par défaut . débit: visio . qualité . débit
+  unité: gCO2e
+
+visio . data center:
+  valeur: data center par défaut
+  contexte:
+    data center par défaut . taille par défaut: visio . emplacements * visio . taille
+  unité: gCO2e

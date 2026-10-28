@@ -1,0 +1,81 @@
+transmission par défaut:
+  unité: gCO2e
+  valeur: (taille par défaut * facteur réseau) + abonnement
+
+transmission par défaut . taille par défaut:
+  par défaut: 1 Mo / 1000 Mo/Go
+  unité: Go
+  meta:
+    question: Quelle est la taille du fichier transmis ?
+
+transmission par défaut . réseau par défaut:
+  par défaut: 'mobile'
+  meta:
+    question: Quel est le type de réseau utilisé pour la transmission ?
+
+transmission par défaut . facteur réseau:
+  unité: gCO2e/Go
+  valeur:
+    variations:
+      - si: réseau par défaut = 'fixe'
+        alors: facteur réseau fixe
+      - si: réseau par défaut = 'mobile'
+        alors: facteur réseau mobile
+
+transmission par défaut . facteur réseau fixe:
+  unité: gCO2e/Go
+  note: Étude ADEME 2024, "Etude de l'impact environnemental des usages
+    audiovisuels en France"
+    https://librairie.ademe.fr/economie-circulaire-et-dechets/7667-etude-de-l-impact-environnemental-des-usages-audiovisuels-en-france.html#
+  valeur: 0.956370508
+
+transmission par défaut . facteur réseau mobile:
+  unité: gCO2e/Go
+  note: Étude ADEME 2024, "Etude de l'impact environnemental des usages
+    audiovisuels en France"
+    https://librairie.ademe.fr/economie-circulaire-et-dechets/7667-etude-de-l-impact-environnemental-des-usages-audiovisuels-en-france.html#
+  valeur: 9.571624339
+
+transmission par défaut . abonnement:
+  unité: gCO2e
+  valeur: taille par défaut * facteur horaire abonnement / débit
+
+transmission par défaut . débit:
+  unité: Go/h
+  valeur:
+    variations:
+      - si: réseau par défaut = 'fixe'
+        alors: débit fixe
+      - si: réseau par défaut = 'mobile'
+        alors: débit mobile
+
+# 1 Mo = 8 Mb
+transmission par défaut . débit fixe:
+  valeur: 300 Mb/s * 3600 s/h / 8000 Mb/Go
+  # 250
+  unité: Go/h
+
+transmission par défaut . débit mobile:
+  valeur: 110 Mb/s * 3600 s/h / 8000 Mb/Go
+  unité: Go/h
+
+transmission par défaut . facteur horaire abonnement:
+  unité: gCO2e/h
+  valeur:
+    variations:
+      - si: réseau par défaut = 'fixe'
+        alors: facteur horaire abonnement fixe
+      - si: réseau par défaut = 'mobile'
+        alors: facteur horaire abonnement mobile
+
+transmission par défaut . facteur horaire abonnement fixe:
+  unité: gCO2e/h
+  note: |
+    Étude ADEME 2024, "Etude de l'impact environnemental des usages audiovisuels en France" https://librairie.ademe.fr/economie-circulaire-et-dechets/7667-etude-de-l-impact-environnemental-des-usages-audiovisuels-en-france.html#
+  valeur: 5.117087337
+
+transmission par défaut . facteur horaire abonnement mobile:
+  unité: gCO2e/h
+  note: |
+    Étude ADEME 2024 "Etude de l'impact environnemental des usages audiovisuels en France" https://librairie.ademe.fr/economie-circulaire-et-dechets/7667-etude-de-l-impact-environnemental-des-usages-audiovisuels-en-france.html#
+  valeur: 7.031758714
