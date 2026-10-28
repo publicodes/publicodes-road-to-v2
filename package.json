@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "compile": "publicodes compile",
-    "compile:v2": "publicodes2 compile",
+    "compile:v2": "publicodes2 compile -C src/V2",
     "codemod": "codemod",
     "compare": "node scripts/compareResults.ts"
   },
